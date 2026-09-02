@@ -1,11 +1,7 @@
-import cirquoLogo from "@/shared/assets/cirquo-logo.png";
+import { Image } from "antd";
+
+import cirquoLogo from "../../../images/cirquo-logo.png";
 
 export function AuthBrand() {
-  return (
-    <img
-      className="h-10 w-auto object-contain object-left"
-      src={cirquoLogo}
-      alt="Cirquo"
-    />
-  );
+  return <Image preview={false} width={140} src={cirquoLogo} alt="Cirquo" />;
 }

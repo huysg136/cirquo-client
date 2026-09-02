@@ -1,0 +1,124 @@
+.auth-page {
+  min-height: 100dvh;
+  padding: 16px;
+  overflow-y: auto;
+  background: #f1f5f9;
+}
+
+.auth-card {
+  width: min(100%, 500px);
+  height: calc(100dvh - 32px);
+  overflow: hidden;
+  border: 0;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgb(30 41 59 / 10%);
+}
+
+.auth-content {
+  height: 100%;
+  padding: 32px 44px;
+}
+
+.auth-center-content {
+  flex: 1;
+  padding: 24px 0;
+}
+
+.auth-title {
+  margin: 0 !important;
+  font-size: 34px !important;
+  line-height: 1.35 !important;
+  letter-spacing: -1px;
+}
+
+.auth-subtitle {
+  margin: 8px 0 0 !important;
+  color: #64748b !important;
+  font-size: 12px;
+}
+
+.auth-form {
+  margin-top: 36px;
+}
+
+.auth-form .ant-form-item {
+  margin-bottom: 10px;
+}
+
+.auth-form .ant-input-affix-wrapper {
+  min-height: 42px;
+  padding-inline: 12px;
+  border-radius: 7px;
+  font-size: 12px;
+}
+
+.auth-form .ant-input-prefix {
+  margin-inline-end: 10px;
+  color: #94a3b8;
+  font-size: 15px;
+}
+
+.auth-form .ant-form-item-explain-error {
+  margin: 4px 0;
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
+.auth-form .ant-checkbox-wrapper {
+  margin-top: 10px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.auth-form-actions {
+  margin: 10px 0 42px;
+  font-size: 11px;
+}
+
+.auth-link {
+  color: #4338ca;
+  font-weight: 500;
+}
+
+.auth-form-actions .auth-link {
+  transform: translateY(2px);
+}
+
+.auth-submit-button {
+  width: 112px;
+  height: 42px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.auth-footer {
+  display: block;
+  color: #64748b !important;
+  text-align: center;
+  font-size: 11px;
+}
+
+@media (max-width: 640px) {
+  .auth-page {
+    padding: 8px;
+  }
+
+  .auth-card {
+    height: calc(100dvh - 16px);
+    border-radius: 20px;
+  }
+
+  .auth-content {
+    padding: 26px 24px;
+  }
+
+  .auth-title {
+    font-size: 30px !important;
+  }
+}
