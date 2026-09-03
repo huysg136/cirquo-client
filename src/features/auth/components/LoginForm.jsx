@@ -3,6 +3,7 @@ import { Button, Checkbox, Flex, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { getErrorMessage } from "../../../shared/config/errorMessages";
 import { useAuthStore } from "../store/auth.store";
 
 export function LoginForm() {
@@ -14,7 +15,7 @@ export function LoginForm() {
       await login({ email, password }, rememberMe);
       toast.success("Signed in successfully.");
     } catch (error) {
-      toast.error(error.message || "Unable to sign in. Please try again.");
+      toast.error(getErrorMessage(error));
     }
   }
 

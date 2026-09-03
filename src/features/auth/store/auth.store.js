@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { loginRequest } from "../services/auth.api";
+import { login } from "../services/auth.service";
 
 export const useAuthStore = create((set) => ({
   user: null,
@@ -27,7 +27,8 @@ export const useAuthStore = create((set) => ({
   login: async (credentials, rememberMe) => {
     set({ status: "loading" });
     try {
-      const session = await loginRequest(credentials);
+      const session = await login(credentials);
+      // store the new session in one place only; remove a previous session from the other storage.
       const storage = rememberMe ? localStorage : sessionStorage;
       const otherStorage = rememberMe ? sessionStorage : localStorage;
       otherStorage.removeItem("cirquo_auth");

@@ -1,8 +1,19 @@
-import { createElement, lazy } from "react";
+import { Navigate } from "react-router-dom";
+
+import { LoginPage } from "../../features/auth/pages/LoginPage";
 import { ROUTES } from "./routePaths";
 
-const loginPage = lazy(() =>
-  import("../../features/auth/pages/LoginPage").then((module) => ({ default: module.LoginPage })),
-);
-
-export const appRoutes = [{ path: ROUTES.USER.LOGIN, element: createElement(loginPage) }];
+export const appRoutes = [
+  {
+    path: ROUTES.PUBLIC.HOME,
+    element: <Navigate to={ROUTES.USER.LOGIN} replace />,
+  },
+  {
+    path: ROUTES.USER.LOGIN,
+    element: <LoginPage />,
+  },
+  {
+    path: "*",
+    element: <Navigate to={ROUTES.PUBLIC.HOME} replace />,
+  },
+];
