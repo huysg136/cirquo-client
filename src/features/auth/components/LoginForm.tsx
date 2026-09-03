@@ -5,22 +5,23 @@ import { toast } from "react-toastify";
 
 import { getErrorMessage } from "../../../shared/config/errorMessages";
 import { useAuthStore } from "../store/auth.store";
+import type { LoginFormValues } from "../types/auth.types";
 
 export function LoginForm() {
   const login = useAuthStore((state) => state.login);
   const status = useAuthStore((state) => state.status);
 
-  async function handleSubmit({ email, password, rememberMe = false }) {
+  async function handleSubmit({ email, password, rememberMe }: LoginFormValues): Promise<void> {
     try {
       await login({ email, password }, rememberMe);
-      toast.success("Signed in successfully.");
+      toast.success("Đăng nhập thành công.");
     } catch (error) {
       toast.error(getErrorMessage(error));
     }
   }
 
   return (
-    <Form
+    <Form<LoginFormValues>
       className="auth-form"
       layout="vertical"
       requiredMark={false}
@@ -30,36 +31,33 @@ export function LoginForm() {
       <Form.Item
         name="email"
         rules={[
-          { required: true, message: "Please enter your email address." },
-          { type: "email", message: "Please enter a valid email address." },
+          { required: true, message: "Vui lòng nhập email." },
+          { type: "email", message: "Email không đúng định dạng." },
         ]}
       >
         <Input
           prefix={<MailOutlined />}
-          aria-label="Email address"
+          aria-label="Email"
           autoComplete="email"
           placeholder="you@example.com"
         />
       </Form.Item>
 
-      <Form.Item
-        name="password"
-        rules={[{ required: true, message: "Please enter your password." }]}
-      >
+      <Form.Item name="password" rules={[{ required: true, message: "Vui lòng nhập mật khẩu." }]}>
         <Input.Password
           prefix={<LockOutlined />}
-          aria-label="Password"
+          aria-label="Mật khẩu"
           autoComplete="current-password"
-          placeholder="Enter your password"
+          placeholder="Nhập mật khẩu"
         />
       </Form.Item>
 
       <Flex align="center" justify="space-between" className="auth-form-actions">
         <Form.Item name="rememberMe" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox>Duy trì đăng nhập</Checkbox>
         </Form.Item>
         <Link className="auth-link" to="/forgot-password">
-          Forgot password?
+          Quên mật khẩu?
         </Link>
       </Flex>
 
@@ -69,7 +67,7 @@ export function LoginForm() {
         htmlType="submit"
         loading={status === "loading"}
       >
-        Sign in
+        Đăng nhập
       </Button>
     </Form>
   );

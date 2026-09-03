@@ -1,4 +1,4 @@
-function getRequiredEnv(key) {
+function getRequiredEnv(key: keyof ImportMetaEnv): string {
   const value = import.meta.env[key];
 
   if (!value) {

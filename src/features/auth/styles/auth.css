@@ -2,7 +2,7 @@
   min-height: 100dvh;
   padding: 16px;
   overflow-y: auto;
-  background: #f1f5f9;
+  background: var(--color-surface-muted);
 }
 
 .auth-card {
@@ -33,7 +33,7 @@
 
 .auth-subtitle {
   margin: 8px 0 0 !important;
-  color: #64748b !important;
+  color: var(--color-text-muted) !important;
   font-size: 12px;
 }
 
@@ -54,7 +54,7 @@
 
 .auth-form .ant-input-prefix {
   margin-inline-end: 10px;
-  color: #94a3b8;
+  color: var(--color-text-muted);
   font-size: 15px;
 }
 
@@ -69,7 +69,7 @@
 
 .auth-form .ant-checkbox-wrapper {
   margin-top: 10px;
-  color: #64748b;
+  color: var(--color-text-muted);
   font-size: 11px;
   font-weight: 400;
   line-height: 1;
@@ -81,7 +81,7 @@
 }
 
 .auth-link {
-  color: #4338ca;
+  color: var(--color-primary);
   font-weight: 500;
 }
 
@@ -99,7 +99,7 @@
 
 .auth-footer {
   display: block;
-  color: #64748b !important;
+  color: var(--color-text-muted) !important;
   text-align: center;
   font-size: 11px;
 }

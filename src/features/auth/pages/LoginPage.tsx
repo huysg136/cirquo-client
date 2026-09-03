@@ -16,18 +16,20 @@ export function LoginPage() {
 
           <Flex vertical justify="center" className="auth-center-content">
             <Title level={1} className="auth-title">
-              Holla,
+              Chào mừng
               <br />
-              Welcome Back
+              trở lại
             </Title>
-            <Paragraph className="auth-subtitle">Hey, welcome back to your special place</Paragraph>
+            <Paragraph className="auth-subtitle">
+              Đăng nhập để tiếp tục khám phá thế giới công nghệ cùng Cirquo.
+            </Paragraph>
             <LoginForm />
           </Flex>
 
           <Text className="auth-footer">
-            New to Cirquo?{" "}
+            Bạn chưa có tài khoản?{" "}
             <Link className="auth-link" to="/register">
-              Create an account
+              Đăng ký ngay
             </Link>
           </Text>
         </Flex>

@@ -1,4 +1,6 @@
-const ERROR_MESSAGES = Object.freeze({
+import { ApiError } from "../lib/ApiError";
+
+const ERROR_MESSAGES: Record<number, string> = {
   1001: "Dữ liệu nhập vào chưa hợp lệ.",
   1002: "Yêu cầu không hợp lệ. Vui lòng thử lại.",
   1003: "Email này đã được sử dụng.",
@@ -10,10 +12,18 @@ const ERROR_MESSAGES = Object.freeze({
   1010: "Mật khẩu xác nhận không khớp.",
   1011: "Mật khẩu hiện tại không chính xác.",
   9999: "Hệ thống đang gặp sự cố. Vui lòng thử lại sau.",
-});
+};
 
 const DEFAULT_ERROR_MESSAGE = "Có lỗi xảy ra. Vui lòng thử lại.";
 
-export function getErrorMessage(error) {
-  return ERROR_MESSAGES[error?.code] ?? error?.message ?? DEFAULT_ERROR_MESSAGE;
+export function getErrorMessage(error: unknown): string {
+  if (error instanceof ApiError) {
+    if (typeof error.code === "number") {
+      return ERROR_MESSAGES[error.code] ?? error.message;
+    }
+
+    return error.message;
+  }
+
+  return DEFAULT_ERROR_MESSAGE;
 }

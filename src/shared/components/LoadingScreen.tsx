@@ -1,6 +1,10 @@
 import { Flex, Spin } from "antd";
 
-export function LoadingScreen({ fullScreen = false }) {
+interface LoadingScreenProps {
+  fullScreen?: boolean;
+}
+
+export function LoadingScreen({ fullScreen = false }: LoadingScreenProps) {
   return (
     <Flex
       align="center"
