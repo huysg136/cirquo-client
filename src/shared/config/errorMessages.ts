@@ -1,7 +1,7 @@
 import { ApiError } from "../lib/ApiError";
 
 const ERROR_MESSAGES: Record<number, string> = {
-  1001: "Dữ liệu nhập vào chưa hợp lệ.",
+  1001: "Thông tin nhập chưa đúng định dạng.",
   1002: "Yêu cầu không hợp lệ. Vui lòng thử lại.",
   1099: "Đã có lỗi hệ thống. Vui lòng thử lại sau.",
   1101: "Email hoặc mật khẩu không chính xác.",
