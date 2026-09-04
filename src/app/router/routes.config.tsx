@@ -6,6 +6,7 @@ import { HomePage } from "../../features/home/pages/HomePage";
 import { ROUTES } from "./routePaths";
 import { NotFoundPage } from "../../features/not-found/pages/NotFoundPage";
 import { ProfilePage } from "../../features/profile/pages/ProfilePage";
+import { AddressPage } from "../../features/address/pages/AddressPage";
 import { PrivateRoute } from "./PrivateRoute";
 
 interface AppRoute {
@@ -22,6 +23,14 @@ export const appRoutes: AppRoute[] = [
     element: (
       <PrivateRoute>
         <ProfilePage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: ROUTES.USER.ADDRESSES,
+    element: (
+      <PrivateRoute>
+        <AddressPage />
       </PrivateRoute>
     ),
   },

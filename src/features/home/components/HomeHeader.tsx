@@ -1,4 +1,5 @@
 import {
+  EnvironmentOutlined,
   FileTextOutlined,
   LogoutOutlined,
   MenuOutlined,
@@ -51,12 +52,32 @@ export function HomeHeader() {
   const accountMenuItems = [
     {
       key: "profile",
-      label: "Thông tin cá nhân",
+      label: (
+        <span className="home-account-menu-label">
+          <UserOutlined />
+          Thông tin cá nhân
+        </span>
+      ),
       onClick: () => navigate(ROUTES.USER.PROFILE),
     },
     {
+      key: "addresses",
+      label: (
+        <span className="home-account-menu-label">
+          <EnvironmentOutlined />
+          Địa chỉ giao hàng
+        </span>
+      ),
+      onClick: () => navigate(ROUTES.USER.ADDRESSES),
+    },
+    {
       key: "orders",
-      label: "Đơn hàng của tôi",
+      label: (
+        <span className="home-account-menu-label">
+          <FileTextOutlined />
+          Đơn hàng của tôi
+        </span>
+      ),
       onClick: () => navigate(ROUTES.USER.ORDERS),
     },
     {
@@ -65,7 +86,12 @@ export function HomeHeader() {
     {
       key: "logout",
       danger: true,
-      label: "Đăng xuất",
+      label: (
+        <span className="home-account-menu-label">
+          <LogoutOutlined />
+          Đăng xuất
+        </span>
+      ),
       onClick: () => {
         logout();
         navigate(ROUTES.PUBLIC.HOME);
@@ -170,6 +196,14 @@ export function HomeHeader() {
                 onClick={() => navigateFromMobileMenu(ROUTES.USER.PROFILE)}
               >
                 Hồ sơ cá nhân
+              </Button>
+              <Button
+                block
+                type="text"
+                icon={<EnvironmentOutlined />}
+                onClick={() => navigateFromMobileMenu(ROUTES.USER.ADDRESSES)}
+              >
+                Địa chỉ giao hàng
               </Button>
               <Button
                 block

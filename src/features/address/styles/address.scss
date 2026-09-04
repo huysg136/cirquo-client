@@ -1,0 +1,79 @@
+@use "../../../shared/styles/responsive" as *;
+
+.address-page {
+  min-height: 100dvh;
+  background: var(--color-surface-muted);
+}
+
+.address-container {
+  width: min(100% - 32px, 720px);
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+
+.address-heading {
+  margin-bottom: 24px;
+
+  .ant-typography {
+    margin: 0;
+  }
+  .ant-btn {
+    height: 42px;
+    font-weight: 600;
+  }
+}
+
+.address-card {
+  border-color: var(--color-border);
+  box-shadow: 0 12px 32px rgb(6 29 60 / 7%);
+
+  &-content {
+    min-height: 74px;
+  }
+  &-details {
+    flex: 1;
+  }
+
+  .ant-tag {
+    margin: 0;
+    border: 0;
+    color: var(--color-section);
+    background: color-mix(in srgb, var(--color-primary) 18%, white);
+  }
+}
+
+.address-empty {
+  .ant-empty {
+    margin: 16px 0;
+  }
+}
+
+.address-form {
+  .ant-form-item {
+    margin-bottom: 16px;
+  }
+  .ant-input {
+    min-height: 42px;
+    border-radius: 10px;
+  }
+}
+
+@include Responsive($WIDE_MOBILE) {
+  .address-container {
+    width: min(100% - 24px, 720px);
+    padding: 24px 0 40px;
+  }
+  .address-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .address-heading .ant-btn {
+    width: 100%;
+  }
+  .address-card-content {
+    flex-direction: column;
+  }
+  .address-card-actions {
+    justify-content: flex-start;
+  }
+}

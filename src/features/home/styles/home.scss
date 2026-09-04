@@ -285,6 +285,18 @@
   }
 }
 
+.home-account-menu-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 156px;
+
+  .anticon {
+    width: 16px;
+    font-size: 16px;
+  }
+}
+
 @include Responsive($TABLET_DEVICE) {
   .home-header {
     padding-inline: 32px;
