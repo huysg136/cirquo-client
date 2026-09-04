@@ -6,7 +6,11 @@ import { HomeHeader } from "../../home/components/HomeHeader";
 import { getErrorMessage } from "../../../shared/config/errorMessages";
 import { useAuthStore } from "../../auth/store/auth.store";
 import { changeUserPassword, getUserProfile, updateUserProfile } from "../services/profile.service";
-import type { ChangePasswordValues, UpdateProfileValues, UserProfile } from "../types/profile.types";
+import type {
+  ChangePasswordValues,
+  UpdateProfileValues,
+  UserProfile,
+} from "../types/profile.types";
 import "../styles/profile.scss";
 
 const PHONE_PATTERN = /^0[35789]\d{8}$/;
@@ -81,19 +85,33 @@ export function ProfilePage() {
       <main className="profile-container">
         <Flex vertical gap={6} className="profile-heading">
           <Typography.Title level={2}>Thông tin cá nhân</Typography.Title>
-          <Typography.Text type="secondary">Quản lý thông tin tài khoản và mật khẩu của bạn.</Typography.Text>
+          <Typography.Text type="secondary">
+            Quản lý thông tin tài khoản và mật khẩu của bạn.
+          </Typography.Text>
         </Flex>
 
         {isLoading ? (
-          <Card className="profile-card"><Skeleton active paragraph={{ rows: 7 }} /></Card>
+          <Card className="profile-card">
+            <Skeleton active paragraph={{ rows: 7 }} />
+          </Card>
         ) : (
           <Flex vertical gap={20}>
-            <Card className="profile-card" title={<><UserOutlined /> Thông tin tài khoản</>}>
+            <Card
+              className="profile-card"
+              title={
+                <>
+                  <UserOutlined /> Thông tin tài khoản
+                </>
+              }
+            >
               <Form form={profileForm} layout="vertical" onFinish={handleProfileSubmit}>
                 <Form.Item
                   name="fullName"
                   label="Họ và tên"
-                  rules={[{ required: true, message: "Vui lòng nhập họ và tên." }, { max: 100, message: "Họ và tên không được quá 100 ký tự." }]}
+                  rules={[
+                    { required: true, message: "Vui lòng nhập họ và tên." },
+                    { max: 100, message: "Họ và tên không được quá 100 ký tự." },
+                  ]}
                 >
                   <Input autoComplete="name" placeholder="Nhập họ và tên" />
                 </Form.Item>
@@ -111,24 +129,44 @@ export function ProfilePage() {
                 <Form.Item
                   name="phone"
                   label="Số điện thoại"
-                  rules={[{ pattern: PHONE_PATTERN, message: "Số điện thoại chưa đúng định dạng." }]}
+                  rules={[
+                    { pattern: PHONE_PATTERN, message: "Số điện thoại chưa đúng định dạng." },
+                  ]}
                 >
                   <Input autoComplete="tel" placeholder="Không bắt buộc" />
                 </Form.Item>
-                <Button type="primary" htmlType="submit" icon={<SaveOutlined />} loading={isSavingProfile}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  icon={<SaveOutlined />}
+                  loading={isSavingProfile}
+                >
                   Lưu thay đổi
                 </Button>
               </Form>
             </Card>
 
-            <Card className="profile-card" title={<><KeyOutlined /> Đổi mật khẩu</>}>
+            <Card
+              className="profile-card"
+              title={
+                <>
+                  <KeyOutlined /> Đổi mật khẩu
+                </>
+              }
+            >
               <Form form={passwordForm} layout="vertical" onFinish={handlePasswordSubmit}>
                 <Form.Item
                   name="currentPassword"
                   label="Mật khẩu hiện tại"
-                  rules={[{ required: true, message: "Vui lòng nhập mật khẩu hiện tại." }, { max: 72, message: "Mật khẩu không được quá 72 ký tự." }]}
+                  rules={[
+                    { required: true, message: "Vui lòng nhập mật khẩu hiện tại." },
+                    { max: 72, message: "Mật khẩu không được quá 72 ký tự." },
+                  ]}
                 >
-                  <Input.Password autoComplete="current-password" placeholder="Nhập mật khẩu hiện tại" />
+                  <Input.Password
+                    autoComplete="current-password"
+                    placeholder="Nhập mật khẩu hiện tại"
+                  />
                 </Form.Item>
                 <Form.Item
                   name="newPassword"

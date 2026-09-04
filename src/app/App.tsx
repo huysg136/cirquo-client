@@ -1,6 +1,5 @@
 import { App as AntdApp, ConfigProvider } from "antd";
 
-
 import { useAuthInit } from "../features/auth/hooks/useAuthInit";
 import { APP_THEME } from "../shared/config/theme";
 import { AppRouter } from "./router/AppRouter";

@@ -35,7 +35,12 @@ export function HomeHero() {
       >
         {banners.map((banner) => (
           <div key={banner.alt} className="home-banner-slide">
-            <Image preview={false} src={banner.image} alt={banner.alt} onClick={() => navigate(banner.path)} />
+            <Image
+              preview={false}
+              src={banner.image}
+              alt={banner.alt}
+              onClick={() => navigate(banner.path)}
+            />
           </div>
         ))}
       </Carousel>
