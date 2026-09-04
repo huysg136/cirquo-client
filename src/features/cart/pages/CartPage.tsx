@@ -7,7 +7,17 @@ import {
   PlusOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { App as AntdApp, Button, Divider, Flex, Form, Input, Radio, Select, Typography } from "antd";
+import {
+  App as AntdApp,
+  Button,
+  Divider,
+  Flex,
+  Form,
+  Input,
+  Radio,
+  Select,
+  Typography,
+} from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -72,7 +82,12 @@ export function CartPage() {
                 <Typography.Title level={4}>{PRODUCT.name}</Typography.Title>
                 <Typography.Text type="secondary">Phiên bản: {PRODUCT.variant}</Typography.Text>
               </div>
-              <Button type="link" danger icon={<DeleteOutlined />} onClick={() => setHasItem(false)}>
+              <Button
+                type="link"
+                danger
+                icon={<DeleteOutlined />}
+                onClick={() => setHasItem(false)}
+              >
                 Xóa sản phẩm
               </Button>
             </Flex>
@@ -86,7 +101,11 @@ export function CartPage() {
                   onClick={() => updateQuantity(quantity - 1)}
                 />
                 <span>{quantity}</span>
-                <Button aria-label="Tăng số lượng" icon={<PlusOutlined />} onClick={() => updateQuantity(quantity + 1)} />
+                <Button
+                  aria-label="Tăng số lượng"
+                  icon={<PlusOutlined />}
+                  onClick={() => updateQuantity(quantity + 1)}
+                />
               </Flex>
             </Flex>
           </Flex>
@@ -100,15 +119,27 @@ export function CartPage() {
         <Form
           layout="vertical"
           className="cart-form"
-          onFinish={() => messageApi.success("Thông tin đơn hàng hợp lệ. Chức năng tạo đơn sẽ được kết nối khi Checkout API sẵn sàng.")}
+          onFinish={() =>
+            messageApi.success(
+              "Thông tin đơn hàng hợp lệ. Chức năng tạo đơn sẽ được kết nối khi Checkout API sẵn sàng.",
+            )
+          }
         >
           <section className="cart-card">
             <Typography.Title level={4}>Thông tin nhận hàng</Typography.Title>
             <Flex gap={16} className="cart-form-row">
-              <Form.Item label="Họ và tên người nhận" name="recipientName" rules={[{ required: true, message: "Vui lòng nhập họ tên người nhận" }]}>
+              <Form.Item
+                label="Họ và tên người nhận"
+                name="recipientName"
+                rules={[{ required: true, message: "Vui lòng nhập họ tên người nhận" }]}
+              >
                 <Input placeholder="Nhập họ và tên" />
               </Form.Item>
-              <Form.Item label="Số điện thoại" name="phone" rules={[{ required: true, message: "Vui lòng nhập số điện thoại" }]}>
+              <Form.Item
+                label="Số điện thoại"
+                name="phone"
+                rules={[{ required: true, message: "Vui lòng nhập số điện thoại" }]}
+              >
                 <Input placeholder="Nhập số điện thoại" />
               </Form.Item>
             </Flex>
@@ -117,20 +148,41 @@ export function CartPage() {
             <Typography.Title level={4}>Địa chỉ giao hàng</Typography.Title>
             <div className="cart-address">
               <Flex gap={16} className="cart-form-row">
-                <Form.Item label="Tỉnh / Thành phố" name="province" rules={[{ required: true, message: "Vui lòng chọn tỉnh/thành phố" }]}>
-                  <Select placeholder="Chọn tỉnh / thành phố" options={[{ value: "Hồ Chí Minh" }, { value: "Hà Nội" }]} />
+                <Form.Item
+                  label="Tỉnh / Thành phố"
+                  name="province"
+                  rules={[{ required: true, message: "Vui lòng chọn tỉnh/thành phố" }]}
+                >
+                  <Select
+                    placeholder="Chọn tỉnh / thành phố"
+                    options={[{ value: "Hồ Chí Minh" }, { value: "Hà Nội" }]}
+                  />
                 </Form.Item>
-                <Form.Item label="Phường / Xã" name="ward" rules={[{ required: true, message: "Vui lòng chọn phường/xã" }]}>
-                  <Select placeholder="Chọn phường / xã" options={[{ value: "Phường Bến Nghé" }, { value: "Phường Sài Gòn" }]} />
+                <Form.Item
+                  label="Phường / Xã"
+                  name="ward"
+                  rules={[{ required: true, message: "Vui lòng chọn phường/xã" }]}
+                >
+                  <Select
+                    placeholder="Chọn phường / xã"
+                    options={[{ value: "Phường Bến Nghé" }, { value: "Phường Sài Gòn" }]}
+                  />
                 </Form.Item>
               </Flex>
-              <Form.Item label="Địa chỉ chi tiết" name="addressLine" rules={[{ required: true, message: "Vui lòng nhập địa chỉ" }]}>
+              <Form.Item
+                label="Địa chỉ chi tiết"
+                name="addressLine"
+                rules={[{ required: true, message: "Vui lòng nhập địa chỉ" }]}
+              >
                 <Input prefix={<EnvironmentOutlined />} placeholder="Số nhà, tên đường" />
               </Form.Item>
             </div>
 
             <Form.Item label="Ghi chú đơn hàng" name="note">
-              <Input.TextArea placeholder="Nhập ghi chú cho đơn hàng (nếu có)" autoSize={{ minRows: 2, maxRows: 4 }} />
+              <Input.TextArea
+                placeholder="Nhập ghi chú cho đơn hàng (nếu có)"
+                autoSize={{ minRows: 2, maxRows: 4 }}
+              />
             </Form.Item>
           </section>
 
@@ -147,9 +199,7 @@ export function CartPage() {
             <Form.Item name="paymentMethod" initialValue="COD">
               <Radio.Group className="cart-payment-method">
                 <Radio value="COD">Thanh toán khi nhận hàng</Radio>
-                <Radio value="VNPAY">VNPay</Radio>
-                <Radio value="MOMO">MoMo</Radio>
-                <Radio value="BANK_TRANSFER">Chuyển khoản ngân hàng</Radio>
+                <Radio value="BANK_TRANSFER">Chuyển khoản ngân hàng (QR)</Radio>
               </Radio.Group>
             </Form.Item>
           </section>
@@ -157,11 +207,19 @@ export function CartPage() {
           <section className="cart-card cart-summary" aria-label="Tổng thanh toán">
             <Flex justify="space-between">
               <Typography.Text strong>Tổng tiền</Typography.Text>
-              <Typography.Text strong className="cart-summary-total">{money.format(total)}</Typography.Text>
+              <Typography.Text strong className="cart-summary-total">
+                {money.format(total)}
+              </Typography.Text>
             </Flex>
-            <Typography.Text type="secondary">Phí vận chuyển và giảm giá sẽ do hệ thống xác nhận khi tạo đơn.</Typography.Text>
-            <Button type="primary" size="large" block htmlType="submit">Đặt hàng</Button>
-            <Typography.Text type="secondary">Thông tin thanh toán được tạo cùng đơn hàng.</Typography.Text>
+            <Typography.Text type="secondary">
+              Phí vận chuyển và giảm giá sẽ do hệ thống xác nhận khi tạo đơn.
+            </Typography.Text>
+            <Button type="primary" size="large" block htmlType="submit">
+              Đặt hàng
+            </Button>
+            <Typography.Text type="secondary">
+              Thông tin thanh toán được tạo cùng đơn hàng.
+            </Typography.Text>
           </section>
         </Form>
       </main>

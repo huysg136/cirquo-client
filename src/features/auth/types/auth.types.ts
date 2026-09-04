@@ -11,6 +11,7 @@ export interface AuthUser {
   id: string;
   email: string;
   fullName?: string;
+  phone?: string | null;
   roleName?: string;
   permissions?: string[];
 }
@@ -31,5 +32,6 @@ export interface AuthStore {
   hasHydrated: boolean;
   hydrateSession: () => void;
   login: (credentials: LoginCredentials, rememberMe: boolean) => Promise<AuthSession>;
+  updateUser: (user: AuthUser) => void;
   logout: () => void;
 }
