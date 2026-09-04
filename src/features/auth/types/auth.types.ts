@@ -18,7 +18,7 @@ export interface AuthUser {
 
 export interface AuthSession {
   accessToken: string;
-  refreshToken?: string;
+  refreshToken: string;
   tokenType?: string;
   user: AuthUser;
 }
@@ -28,10 +28,12 @@ export type AuthStatus = "idle" | "loading" | "authenticated";
 export interface AuthStore {
   user: AuthUser | null;
   accessToken: string | null;
+  refreshToken: string | null;
   status: AuthStatus;
   hasHydrated: boolean;
   hydrateSession: () => void;
   login: (credentials: LoginCredentials, rememberMe: boolean) => Promise<AuthSession>;
+  setSession: (session: AuthSession) => void;
   updateUser: (user: AuthUser) => void;
   logout: () => void;
 }

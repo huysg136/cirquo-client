@@ -21,7 +21,6 @@ function toProfileFormValues(profile: UserProfile): UpdateProfileValues {
 
 export function ProfilePage() {
   const user = useAuthStore((state) => state.user);
-  const accessToken = useAuthStore((state) => state.accessToken);
   const updateUser = useAuthStore((state) => state.updateUser);
   const { message: messageApi } = AntdApp.useApp();
   const [profileForm] = Form.useForm<UpdateProfileValues>();
@@ -31,7 +30,7 @@ export function ProfilePage() {
   const [isSavingPassword, setIsSavingPassword] = useState(false);
 
   useEffect(() => {
-    if (!user || !accessToken) return;
+    if (!user) return;
 
     const fallbackProfile: UserProfile = {
       id: user.id,
@@ -40,21 +39,21 @@ export function ProfilePage() {
       phone: user.phone ?? null,
     };
 
-    getUserProfile(user.id, accessToken)
+    getUserProfile(user.id)
       .then((profile) => profileForm.setFieldsValue(toProfileFormValues(profile)))
       .catch((error) => {
         profileForm.setFieldsValue(toProfileFormValues(fallbackProfile));
         messageApi.error(getErrorMessage(error));
       })
       .finally(() => setIsLoading(false));
-  }, [accessToken, messageApi, profileForm, user]);
+  }, [messageApi, profileForm, user]);
 
   async function handleProfileSubmit(values: UpdateProfileValues): Promise<void> {
-    if (!user || !accessToken) return;
+    if (!user) return;
 
     setIsSavingProfile(true);
     try {
-      const profile = await updateUserProfile(user.id, values, accessToken);
+      const profile = await updateUserProfile(user.id, values);
       updateUser({ ...user, ...profile });
       messageApi.success("Đã cập nhật thông tin cá nhân.");
     } catch (error) {
@@ -65,11 +64,11 @@ export function ProfilePage() {
   }
 
   async function handlePasswordSubmit(values: ChangePasswordValues): Promise<void> {
-    if (!user || !accessToken) return;
+    if (!user) return;
 
     setIsSavingPassword(true);
     try {
-      await changeUserPassword(user.id, values, accessToken);
+      await changeUserPassword(user.id, values);
       passwordForm.resetFields();
       messageApi.success("Đã cập nhật mật khẩu.");
     } catch (error) {

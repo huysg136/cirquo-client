@@ -5,5 +5,6 @@ export function loginRequest(credentials: LoginCredentials): Promise<AuthSession
   return request<AuthSession>("/auth/login", {
     method: "POST",
     body: credentials,
+    skipAuthRefresh: true,
   });
 }
