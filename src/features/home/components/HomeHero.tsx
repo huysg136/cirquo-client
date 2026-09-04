@@ -3,23 +3,25 @@ import { Button, Carousel, Image } from "antd";
 import type { CarouselRef } from "antd";
 import { useRef, useState } from "react";
 
-import cirquoLogo from "../../../images/cirquo-logo.png";
-import iphone17Banner from "../assets/iphone-17-banner.png";
-import iphone17ProBanner from "../assets/iphone-17-pro-banner.png";
+import iphone17Banner from "../assets/banners/iphone-17-cirquo.png";
+import iphone17ProMaxBanner from "../assets/banners/iphone-17-pro-max-cirquo.png";
+import { useNavigate } from "react-router-dom";
 
 interface Banner {
   image: string;
   alt: string;
+  path: string;
 }
 
 const banners: Banner[] = [
-  { image: iphone17ProBanner, alt: "Ưu đãi iPhone 17 Pro Max" },
-  { image: iphone17Banner, alt: "Ưu đãi iPhone 17" },
+  { image: iphone17ProMaxBanner, alt: "iPhone 17 Pro Max tại Cirquo", path: "/iphone/iphone-17" },
+  { image: iphone17Banner, alt: "iPhone 17 tại Cirquo", path: "/iphone/iphone-17" },
 ];
 
 export function HomeHero() {
   const carouselRef = useRef<CarouselRef | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <section className="home-hero" aria-label="Ưu đãi nổi bật">
@@ -33,10 +35,7 @@ export function HomeHero() {
       >
         {banners.map((banner) => (
           <div key={banner.alt} className="home-banner-slide">
-            <Image preview={false} src={banner.image} alt={banner.alt} />
-            <span className="home-banner-brand" aria-label="Cirquo">
-              <Image preview={false} src={cirquoLogo} alt="Cirquo" />
-            </span>
+            <Image preview={false} src={banner.image} alt={banner.alt} onClick={() => navigate(banner.path)} />
           </div>
         ))}
       </Carousel>

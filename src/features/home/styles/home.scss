@@ -88,6 +88,40 @@
   margin-top: 24px;
 }
 
+.home-mobile-account {
+  padding-top: 20px;
+
+  &-summary {
+    padding: 12px;
+    border-radius: 10px;
+    background: var(--color-surface-muted);
+
+    .ant-avatar {
+      color: var(--color-text-inverse);
+      background: var(--color-header);
+    }
+  }
+
+  &-label {
+    color: var(--color-text-muted);
+    font-size: 11px;
+  }
+
+  &-actions {
+    .ant-btn {
+      height: 40px;
+      padding-inline: 10px;
+      text-align: left;
+      justify-content: flex-start;
+
+      &:not(.ant-btn-dangerous):hover {
+        color: var(--color-text) !important;
+        background: var(--color-surface-muted) !important;
+      }
+    }
+  }
+}
+
 .home-content {
   width: 100%;
   max-width: none;
@@ -98,6 +132,10 @@
   position: relative;
   overflow: hidden;
   background: var(--color-surface);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .home-banner-carousel,
@@ -122,26 +160,6 @@
 
   > .ant-image .ant-image-img {
     object-fit: cover;
-  }
-}
-
-.home-banner-brand {
-  position: absolute;
-  z-index: 2;
-  top: 2.7%;
-  right: 2.7%;
-  display: grid;
-  width: clamp(90px, 7.2vw, 138px);
-  height: clamp(34px, 3vw, 54px);
-  place-items: center;
-  background: var(--color-surface);
-
-  .ant-image,
-  .ant-image-img {
-    display: block;
-    width: 100%;
-    max-height: 100%;
-    object-fit: contain;
   }
 }
 
@@ -312,13 +330,6 @@
   .home-banner-slide > .ant-image .ant-image-img {
     object-fit: contain;
     object-position: center;
-  }
-
-  .home-banner-brand {
-    top: 6%;
-    right: 3%;
-    width: 48px;
-    height: 18px;
   }
 
   .home-slider-button.ant-btn {

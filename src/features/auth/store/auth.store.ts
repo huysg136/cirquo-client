@@ -51,4 +51,14 @@ export const useAuthStore = create<AuthStore>((set) => ({
       throw error;
     }
   },
+  logout: () => {
+    localStorage.removeItem(SESSION_STORAGE_KEY);
+    sessionStorage.removeItem(SESSION_STORAGE_KEY);
+
+    set({
+      user: null,
+      accessToken: null,
+      status: "idle",
+    });
+  },
 }));

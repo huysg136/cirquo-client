@@ -1,8 +1,8 @@
 const ADMIN_BASE_PATH = "/admin";
 
 export const ROUTES = Object.freeze({
-  PUBLIC: { HOME: "/", MAINTENANCE: "/maintenance" },
-  USER: { LOGIN: "/login", PROFILE: "/profile", ADDRESSES: "/addresses", ORDERS: "/orders" },
+  PUBLIC: { HOME: "/", MAINTENANCE: "/bao-tri", CART: "/gio-hang" },
+  USER: { LOGIN: "/dang-nhap", PROFILE: "/ho-so", ADDRESSES: "/dia-chi", ORDERS: "/don-hang" },
   ADMIN: {
     DASHBOARD: ADMIN_BASE_PATH,
     USERS: `${ADMIN_BASE_PATH}/users`,

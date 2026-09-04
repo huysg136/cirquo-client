@@ -1,10 +1,23 @@
 import {
+  FileTextOutlined,
+  LogoutOutlined,
   MenuOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Drawer, Flex, Image, Input, Layout, Dropdown } from "antd";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Drawer,
+  Dropdown,
+  Flex,
+  Image,
+  Input,
+  Layout,
+  Typography,
+} from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthStore } from "../../auth/store/auth.store";
@@ -26,12 +39,14 @@ export function HomeHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const navigateFromMobileMenu = (path: string) => {
+    closeMobileMenu();
+    navigate(path);
+  };
 
   const user = useAuthStore((state) => state.user);
   const displayName =
-    user?.fullName?.trim().split(/\s+/).at(-1) ??
-    user?.email.split("@")[0] ??
-    "Đăng nhập";
+    user?.fullName?.trim().split(/\s+/).at(-1) ?? user?.email.split("@")[0] ?? "Đăng nhập";
 
   const accountMenuItems = [
     {
@@ -51,8 +66,14 @@ export function HomeHeader() {
       key: "logout",
       danger: true,
       label: "Đăng xuất",
+      onClick: () => {
+        logout();
+        navigate(ROUTES.PUBLIC.HOME);
+      },
     },
   ];
+
+  const logout = useAuthStore((state) => state.logout);
 
   return (
     <Layout.Header className="home-header">
@@ -82,6 +103,7 @@ export function HomeHeader() {
               type="text"
               icon={<ShoppingCartOutlined />}
               aria-label="Giỏ hàng"
+              onClick={() => navigate(ROUTES.PUBLIC.CART)}
             />
           </Badge>
           {user ? (
@@ -102,7 +124,7 @@ export function HomeHeader() {
               icon={<UserOutlined />}
               onClick={() => navigate(ROUTES.USER.LOGIN)}
             >
-              Đăng nhập
+              <span className="home-account-button-name">Đăng nhập</span>
             </Button>
           )}
           <Button
@@ -130,17 +152,57 @@ export function HomeHeader() {
             </Link>
           ))}
         </Flex>
-        <Button
-          block
-          className="home-mobile-login"
-          icon={<UserOutlined />}
-          onClick={() => {
-            closeMobileMenu();
-            navigate(ROUTES.USER.LOGIN);
-          }}
-        >
-          Đăng nhập
-        </Button>
+        {user ? (
+          <Flex vertical gap={16} className="home-mobile-account">
+            <Flex align="center" gap={12} className="home-mobile-account-summary">
+              <Avatar size={40} icon={<UserOutlined />} />
+              <Flex vertical gap={0}>
+                <Typography.Text className="home-mobile-account-label">Tài khoản</Typography.Text>
+                <Typography.Text strong>{displayName}</Typography.Text>
+              </Flex>
+            </Flex>
+
+            <Flex vertical gap={4} className="home-mobile-account-actions">
+              <Button
+                block
+                type="text"
+                icon={<UserOutlined />}
+                onClick={() => navigateFromMobileMenu(ROUTES.USER.PROFILE)}
+              >
+                Hồ sơ cá nhân
+              </Button>
+              <Button
+                block
+                type="text"
+                icon={<FileTextOutlined />}
+                onClick={() => navigateFromMobileMenu(ROUTES.USER.ORDERS)}
+              >
+                Đơn hàng của tôi
+              </Button>
+              <Button
+                block
+                danger
+                type="text"
+                icon={<LogoutOutlined />}
+                onClick={() => {
+                  logout();
+                  navigateFromMobileMenu(ROUTES.PUBLIC.HOME);
+                }}
+              >
+                Đăng xuất
+              </Button>
+            </Flex>
+          </Flex>
+        ) : (
+          <Button
+            block
+            className="home-mobile-login"
+            icon={<UserOutlined />}
+            onClick={() => navigateFromMobileMenu(ROUTES.USER.LOGIN)}
+          >
+            Đăng nhập
+          </Button>
+        )}
       </Drawer>
     </Layout.Header>
   );

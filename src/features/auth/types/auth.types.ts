@@ -31,4 +31,5 @@ export interface AuthStore {
   hasHydrated: boolean;
   hydrateSession: () => void;
   login: (credentials: LoginCredentials, rememberMe: boolean) => Promise<AuthSession>;
+  logout: () => void;
 }
