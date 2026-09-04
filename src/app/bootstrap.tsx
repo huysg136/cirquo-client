@@ -6,7 +6,7 @@ import "@fontsource/be-vietnam-pro/500.css";
 import "@fontsource/be-vietnam-pro/600.css";
 import "@fontsource/be-vietnam-pro/700.css";
 import "antd/dist/reset.css";
-import "../shared/styles/global.css";
+import "../shared/styles/style.scss";
 
 import { applyTheme } from "../shared/config/theme";
 import App from "./App";

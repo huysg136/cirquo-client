@@ -1,7 +1,7 @@
 import { ConfigProvider } from "antd";
 import { ToastContainer } from "react-toastify";
 
-import "./App.css";
+import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useAuthInit } from "../features/auth/hooks/useAuthInit";

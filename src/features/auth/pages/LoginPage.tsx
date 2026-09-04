@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { AuthBrand } from "../components/AuthBrand";
 import { LoginForm } from "../components/LoginForm";
-import "../styles/auth.css";
+import "../styles/auth.scss";
 
 const { Paragraph, Text, Title } = Typography;
 

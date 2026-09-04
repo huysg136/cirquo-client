@@ -1,0 +1,15 @@
+$theme-colors: (
+  "primary": var(--color-primary),
+  "header": var(--color-header),
+  "surface": var(--color-surface),
+  "surface-muted": var(--color-surface-muted),
+  "section": var(--color-section),
+  "card": var(--color-card),
+  "text": var(--color-text),
+  "text-muted": var(--color-text-muted),
+  "text-inverse": var(--color-text-inverse),
+  "border": var(--color-border),
+  "dot": var(--color-dot),
+);
+
+$font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;

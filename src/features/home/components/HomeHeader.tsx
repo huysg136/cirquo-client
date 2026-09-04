@@ -1,19 +1,30 @@
 import {
-  LaptopOutlined,
+  MenuOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Flex, Image, Input, Layout, Typography } from "antd";
+import { Badge, Button, Drawer, Flex, Image, Input, Layout } from "antd";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import cirquoLogo from "../../../images/cirquo-logo.png";
 import { ROUTES } from "../../../app/router/routePaths";
 
-const navigationItems = ["iPhone", "Mac", "iPad", "Watch", "Tai nghe, loa", "Phụ kiện"];
+const navigationItems = [
+  { label: "iPhone", path: ROUTES.CATEGORY.IPHONE },
+  { label: "Mac", path: ROUTES.CATEGORY.MAC },
+  { label: "iPad", path: ROUTES.CATEGORY.IPAD },
+  { label: "Watch", path: ROUTES.CATEGORY.WATCH },
+  { label: "Tai nghe, loa", path: ROUTES.CATEGORY.HEADPHONES },
+  { label: "Phụ kiện", path: ROUTES.CATEGORY.ACCESSORIES },
+];
 
 export function HomeHeader() {
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <Layout.Header className="home-header">
@@ -24,9 +35,9 @@ export function HomeHeader() {
 
         <Flex align="center" gap={40} className="home-navigation">
           {navigationItems.map((item) => (
-            <Typography.Link key={item} className="home-navigation-link">
-              {item}
-            </Typography.Link>
+            <Link key={item.path} className="home-navigation-link" to={item.path}>
+              {item.label}
+            </Link>
           ))}
         </Flex>
 
@@ -37,7 +48,7 @@ export function HomeHeader() {
             placeholder="Tìm sản phẩm"
             aria-label="Tìm sản phẩm"
           />
-          <Badge count={0} showZero={false}>
+          <Badge className="home-cart-badge" count={100} showZero={false}>
             <Button
               shape="circle"
               type="text"
@@ -45,22 +56,51 @@ export function HomeHeader() {
               aria-label="Giỏ hàng"
             />
           </Badge>
-          <Badge count={0} showZero={false}>
-            <Button
-              shape="circle"
-              type="text"
-              icon={<UserOutlined />}
-              aria-label="Đăng nhập"
-              onClick={() => navigate(ROUTES.USER.LOGIN)}
-            />
-          </Badge>
+          <Button
+            className="home-account-button"
+            shape="circle"
+            type="text"
+            icon={<UserOutlined />}
+            aria-label="Đăng nhập"
+            onClick={() => navigate(ROUTES.USER.LOGIN)}
+          />
+          <Button
+            className="home-menu-button"
+            shape="circle"
+            type="text"
+            icon={<MenuOutlined />}
+            aria-label="Mở menu"
+            onClick={() => setIsMobileMenuOpen(true)}
+          />
         </Flex>
       </Flex>
 
-      <Flex align="center" gap={8} className="home-mobile-nav">
-        <LaptopOutlined />
-        <Typography.Text>Thiết bị công nghệ chính hãng</Typography.Text>
-      </Flex>
+      <Drawer
+        className="home-mobile-drawer"
+        title="Danh mục"
+        placement="right"
+        open={isMobileMenuOpen}
+        onClose={closeMobileMenu}
+      >
+        <Flex vertical className="home-mobile-navigation">
+          {navigationItems.map((item) => (
+            <Link key={item.path} to={item.path} onClick={closeMobileMenu}>
+              {item.label}
+            </Link>
+          ))}
+        </Flex>
+        <Button
+          block
+          className="home-mobile-login"
+          icon={<UserOutlined />}
+          onClick={() => {
+            closeMobileMenu();
+            navigate(ROUTES.USER.LOGIN);
+          }}
+        >
+          Đăng nhập
+        </Button>
+      </Drawer>
     </Layout.Header>
   );
 }

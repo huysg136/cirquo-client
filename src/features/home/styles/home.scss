@@ -1,3 +1,5 @@
+@use "../../../shared/styles/responsive" as *;
+
 .home-page {
   min-height: 100dvh;
   background: var(--color-surface);
@@ -6,45 +8,49 @@
 .home-header {
   height: 56px;
   padding: 0 128px;
-  background: var(--color-header);
   border: 0;
+  background: var(--color-header);
   line-height: normal;
+
+  &-content {
+    width: min(100%, 1500px);
+    height: 56px;
+    margin: 0 auto;
+  }
+
+  &-actions {
+    .ant-btn {
+      font-weight: 500;
+    }
+
+    .ant-btn-text {
+      color: var(--color-text-inverse);
+      background: var(--color-card);
+
+      &:hover {
+        color: var(--color-text-inverse) !important;
+        background: var(--color-action-hover) !important;
+      }
+    }
+  }
 }
 
-.home-header-content {
-  width: min(100%, 1500px);
-  height: 56px;
-  margin: 0 auto;
-}
-
-.home-brand .ant-image,
-.home-brand img {
-  display: block;
-  width: 122px;
-  filter: brightness(0) invert(1);
+.home-brand {
+  .ant-image,
+  img {
+    display: block;
+    width: 122px;
+    filter: brightness(0) invert(1);
+  }
 }
 
 .home-navigation-link {
   color: var(--color-text-inverse) !important;
   font-size: 13px;
-}
 
-.home-navigation-link:hover {
-  color: var(--color-border) !important;
-}
-
-.home-header-actions .ant-btn {
-  font-weight: 500;
-}
-
-.home-header-actions .ant-btn-text {
-  color: var(--color-text-inverse);
-  background: var(--color-card);
-}
-
-.home-header-actions .ant-btn-text:hover {
-  color: var(--color-text-inverse) !important;
-  background: var(--color-action-hover) !important;
+  &:hover {
+    color: var(--color-border) !important;
+  }
 }
 
 .home-search {
@@ -53,8 +59,33 @@
   border-radius: 10px;
 }
 
+.home-cart-badge .ant-badge-count {
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  font-size: 8px;
+  line-height: 16px;
+}
+
 .home-mobile-nav {
   display: none;
+}
+
+.home-menu-button {
+  display: none;
+}
+
+.home-mobile-navigation {
+  a {
+    padding: 14px 0;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    font-weight: 500;
+  }
+}
+
+.home-mobile-login {
+  margin-top: 24px;
 }
 
 .home-content {
@@ -81,17 +112,17 @@
   position: relative;
   overflow: hidden;
   background: var(--color-surface);
-}
 
-.home-banner-slide > .ant-image,
-.home-banner-slide > .ant-image .ant-image-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+  > .ant-image,
+  > .ant-image .ant-image-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 
-.home-banner-slide > .ant-image .ant-image-img {
-  object-fit: cover;
+  > .ant-image .ant-image-img {
+    object-fit: cover;
+  }
 }
 
 .home-banner-brand {
@@ -104,14 +135,14 @@
   height: clamp(34px, 3vw, 54px);
   place-items: center;
   background: var(--color-surface);
-}
 
-.home-banner-brand .ant-image,
-.home-banner-brand .ant-image-img {
-  display: block;
-  width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  .ant-image,
+  .ant-image-img {
+    display: block;
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
 }
 
 .home-slider-button.ant-btn {
@@ -131,7 +162,7 @@
   place-items: center;
   color: var(--color-text-inverse) !important;
   border: 0;
-  border-radius: 999px !important;
+  border-radius: 50% !important;
   background: rgb(64 64 64 / 78%) !important;
   line-height: 1;
   transform: translateY(-50%);
@@ -154,21 +185,21 @@
   align-items: center;
   gap: 14px;
   transform: translateX(-50%);
-}
 
-.home-slider-dots button {
-  width: 12px;
-  height: 12px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--color-dot);
-  cursor: pointer;
-}
+  button {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-dot);
+    cursor: pointer;
 
-.home-slider-dots button.is-active {
-  border: 2px solid var(--color-primary);
-  background: var(--color-surface);
+    &.is-active {
+      border: 2px solid var(--color-primary);
+      background: var(--color-surface);
+    }
+  }
 }
 
 .home-categories {
@@ -187,15 +218,15 @@
   border-radius: 16px;
   background: var(--color-card);
   box-shadow: none;
-}
 
-.home-category-card .ant-card-body {
-  padding: 38px 10px 22px;
-}
+  .ant-card-body {
+    padding: 38px 10px 22px;
+  }
 
-.home-category-card .ant-typography {
-  color: var(--color-text-inverse);
-  font-size: 14px;
+  .ant-typography {
+    color: var(--color-text-inverse);
+    font-size: 14px;
+  }
 }
 
 .home-category-icon {
@@ -209,7 +240,11 @@
   font-size: 42px;
 }
 
-@media (max-width: 1000px) {
+@include Responsive($TABLET_DEVICE) {
+  .home-header {
+    padding-inline: 32px;
+  }
+
   .home-navigation {
     display: none;
   }
@@ -219,18 +254,18 @@
   }
 }
 
-@media (max-width: 640px) {
+@include Responsive($WIDE_MOBILE) {
   .home-header {
     height: auto;
     padding: 0 20px;
-  }
 
-  .home-header-content {
-    height: 64px;
+    &-content {
+      height: 64px;
+    }
   }
 
   .home-search,
-  .home-header-actions > .ant-badge {
+  .home-account-button {
     display: none;
   }
 
@@ -238,18 +273,8 @@
     padding-inline: 10px;
   }
 
-  .home-header-actions .ant-btn .anticon {
-    display: none;
-  }
-
-  .home-mobile-nav {
-    height: 34px;
-    color: var(--color-dot);
-    font-size: 11px;
-  }
-
-  .home-mobile-nav .ant-typography {
-    color: inherit;
+  .home-menu-button {
+    display: inline-flex;
   }
 
   .home-banner-carousel,
@@ -257,32 +282,38 @@
   .home-banner-carousel .slick-track,
   .home-banner-carousel .slick-slide > div,
   .home-banner-slide {
-    height: 290px;
+    height: auto;
+    aspect-ratio: 18 / 5;
   }
 
   .home-banner-slide > .ant-image .ant-image-img {
-    object-position: 55% center;
+    object-fit: contain;
+    object-position: center;
   }
 
   .home-banner-brand {
-    top: 4%;
+    top: 6%;
     right: 3%;
-    width: 78px;
-    height: 30px;
+    width: 48px;
+    height: 18px;
   }
 
-  .home-slider-button {
-    display: none;
+  .home-slider-button.ant-btn {
+    inline-size: 32px !important;
+    block-size: 32px !important;
+    min-inline-size: 32px !important;
+    min-block-size: 32px !important;
+    font-size: 11px;
   }
 
   .home-slider-dots {
-    bottom: 8px;
-    gap: 9px;
-  }
+    bottom: 5px;
+    gap: 6px;
 
-  .home-slider-dots button {
-    width: 9px;
-    height: 9px;
+    button {
+      width: 6px;
+      height: 6px;
+    }
   }
 
   .home-categories {

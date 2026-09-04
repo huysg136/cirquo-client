@@ -1,0 +1,30 @@
+$DESKTOP: "desktop";
+$MEDIUM_DEVICE: "medium";
+$TABLET_DEVICE: "tablet";
+$WIDE_MOBILE: "mobile";
+$SMALL_DEVICES: "small-mobile";
+
+// Dùng: @include responsive.Responsive(responsive.$WIDE_MOBILE) { ... }
+@mixin Responsive($canvas) {
+  @if $canvas == $DESKTOP {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else if $canvas == $MEDIUM_DEVICE {
+    @media (max-width: 1199px) {
+      @content;
+    }
+  } @else if $canvas == $TABLET_DEVICE {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $canvas == $WIDE_MOBILE {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $canvas == $SMALL_DEVICES {
+    @media (max-width: 575px) {
+      @content;
+    }
+  }
+}

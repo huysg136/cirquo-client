@@ -1,0 +1,36 @@
+@use "./_theme.scss" as theme;
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: theme.$font-sans;
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    background: var(--color-surface-muted);
+    color: var(--color-text);
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
