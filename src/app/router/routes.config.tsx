@@ -5,6 +5,8 @@ import { CartPage } from "../../features/cart/pages/CartPage";
 import { HomePage } from "../../features/home/pages/HomePage";
 import { ROUTES } from "./routePaths";
 import { NotFoundPage } from "../../features/not-found/pages/NotFoundPage";
+import { ProfilePage } from "../../features/profile/pages/ProfilePage";
+import { PrivateRoute } from "./PrivateRoute";
 
 interface AppRoute {
   path: string;
@@ -15,5 +17,13 @@ export const appRoutes: AppRoute[] = [
   { path: ROUTES.PUBLIC.HOME, element: <HomePage /> },
   { path: ROUTES.PUBLIC.CART, element: <CartPage /> },
   { path: ROUTES.USER.LOGIN, element: <LoginPage /> },
+  {
+    path: ROUTES.USER.PROFILE,
+    element: (
+      <PrivateRoute>
+        <ProfilePage />
+      </PrivateRoute>
+    ),
+  },
   { path: "*", element: <NotFoundPage /> },
 ];

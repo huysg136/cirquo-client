@@ -1,0 +1,60 @@
+@use "../../../shared/styles/responsive" as *;
+
+.profile-page {
+  min-height: 100dvh;
+  background: var(--color-surface-muted);
+}
+
+.profile-container {
+  width: min(100% - 32px, 720px);
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+
+.profile-heading {
+  margin-bottom: 24px;
+
+  .ant-typography {
+    margin: 0;
+  }
+}
+
+.profile-card {
+  border-color: var(--color-border);
+  box-shadow: 0 12px 32px rgb(6 29 60 / 7%);
+
+  .ant-card-head-title .anticon {
+    margin-right: 8px;
+    color: var(--color-primary);
+  }
+
+  .ant-form-item {
+    margin-bottom: 18px;
+  }
+
+  .ant-input {
+    min-height: 44px;
+    border-radius: 10px;
+  }
+
+  .ant-btn {
+    min-width: 160px;
+    height: 42px;
+    font-weight: 600;
+  }
+}
+
+@include Responsive($WIDE_MOBILE) {
+  .profile-container {
+    width: min(100% - 24px, 720px);
+    padding: 24px 0 40px;
+  }
+
+  .profile-heading .ant-typography:first-child {
+    font-size: 24px;
+  }
+
+  .profile-card .ant-btn {
+    width: 100%;
+  }
+}

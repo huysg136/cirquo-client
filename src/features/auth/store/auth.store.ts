@@ -51,6 +51,17 @@ export const useAuthStore = create<AuthStore>((set) => ({
       throw error;
     }
   },
+  updateUser: (user) => {
+    [localStorage, sessionStorage].forEach((storage) => {
+      const session = parseSession(storage.getItem(SESSION_STORAGE_KEY));
+
+      if (session) {
+        storage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ ...session, user }));
+      }
+    });
+
+    set({ user });
+  },
   logout: () => {
     localStorage.removeItem(SESSION_STORAGE_KEY);
     sessionStorage.removeItem(SESSION_STORAGE_KEY);
