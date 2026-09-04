@@ -97,7 +97,7 @@ export function HomeHeader() {
             placeholder="Tìm sản phẩm"
             aria-label="Tìm sản phẩm"
           />
-          <Badge className="home-cart-badge" count={100} showZero={false}>
+          <Badge className="home-cart-badge" count={1} showZero={false}>
             <Button
               shape="circle"
               type="text"

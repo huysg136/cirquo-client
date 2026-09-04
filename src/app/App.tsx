@@ -1,8 +1,5 @@
-import { ConfigProvider } from "antd";
-import { ToastContainer } from "react-toastify";
+import { App as AntdApp, ConfigProvider } from "antd";
 
-import "./App.scss";
-import "react-toastify/dist/ReactToastify.css";
 
 import { useAuthInit } from "../features/auth/hooks/useAuthInit";
 import { APP_THEME } from "../shared/config/theme";
@@ -13,8 +10,9 @@ function App() {
 
   return (
     <ConfigProvider theme={{ token: APP_THEME.antdToken }}>
-      <ToastContainer position="top-right" autoClose={2000} toastClassName="small-toast" />
-      <AppRouter />
+      <AntdApp message={{ duration: 2, maxCount: 3 }}>
+        <AppRouter />
+      </AntdApp>
     </ConfigProvider>
   );
 }
