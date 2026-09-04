@@ -46,7 +46,7 @@
 
 .home-navigation-link {
   color: var(--color-text-inverse) !important;
-  font-size: 12px;
+  font-size: 13px;
 
   &:hover {
     color: var(--color-border) !important;
@@ -59,7 +59,7 @@
   border-radius: 10px;
 
   .ant-input {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
 }
 
@@ -271,12 +271,12 @@
   border-radius: 8px !important;
 
   &-name {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   &-dropdown {
     .ant-dropdown-menu-item {
-      font-size: 12px !important;
+      font-size: 13px !important;
     }
   }
 
