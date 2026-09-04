@@ -10,6 +10,7 @@ export interface LoginFormValues extends LoginCredentials {
 export interface AuthUser {
   id: string;
   email: string;
+  fullName?: string;
   roleName?: string;
   permissions?: string[];
 }

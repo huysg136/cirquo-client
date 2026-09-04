@@ -240,6 +240,29 @@
   font-size: 42px;
 }
 
+.home-account-button {
+  margin-left: 8px;
+  height: 36px;
+  padding: 0 16px !important;
+  color: var(--color-text-inverse) !important;
+  background: var(--color-card);
+  border-radius: 8px !important;
+
+  &-name {
+    font-size: 12px;
+  }
+
+  &-dropdown {
+    .ant-dropdown-menu-item {
+      font-size: 12px !important;
+    }
+  }
+
+  &:hover {
+    background: var(--color-action-hover) !important;
+  }
+}
+
 @include Responsive($TABLET_DEVICE) {
   .home-header {
     padding-inline: 32px;

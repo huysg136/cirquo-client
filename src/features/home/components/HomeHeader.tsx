@@ -4,9 +4,10 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Drawer, Flex, Image, Input, Layout } from "antd";
+import { Badge, Button, Drawer, Flex, Image, Input, Layout, Dropdown } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuthStore } from "../../auth/store/auth.store";
 
 import cirquoLogo from "../../../images/cirquo-logo.png";
 import { ROUTES } from "../../../app/router/routePaths";
@@ -25,6 +26,33 @@ export function HomeHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const user = useAuthStore((state) => state.user);
+  const displayName =
+    user?.fullName?.trim().split(/\s+/).at(-1) ??
+    user?.email.split("@")[0] ??
+    "Đăng nhập";
+
+  const accountMenuItems = [
+    {
+      key: "profile",
+      label: "Thông tin cá nhân",
+      onClick: () => navigate(ROUTES.USER.PROFILE),
+    },
+    {
+      key: "orders",
+      label: "Đơn hàng của tôi",
+      onClick: () => navigate(ROUTES.USER.ORDERS),
+    },
+    {
+      type: "divider" as const,
+    },
+    {
+      key: "logout",
+      danger: true,
+      label: "Đăng xuất",
+    },
+  ];
 
   return (
     <Layout.Header className="home-header">
@@ -56,14 +84,27 @@ export function HomeHeader() {
               aria-label="Giỏ hàng"
             />
           </Badge>
-          <Button
-            className="home-account-button"
-            shape="circle"
-            type="text"
-            icon={<UserOutlined />}
-            aria-label="Đăng nhập"
-            onClick={() => navigate(ROUTES.USER.LOGIN)}
-          />
+          {user ? (
+            <Dropdown
+              menu={{ items: accountMenuItems }}
+              trigger={["hover"]}
+              placement="bottomRight"
+              overlayClassName="home-account-button-dropdown"
+            >
+              <Button className="home-account-button" type="text" icon={<UserOutlined />}>
+                <span className="home-account-button-name">{displayName}</span>
+              </Button>
+            </Dropdown>
+          ) : (
+            <Button
+              className="home-account-button"
+              type="text"
+              icon={<UserOutlined />}
+              onClick={() => navigate(ROUTES.USER.LOGIN)}
+            >
+              Đăng nhập
+            </Button>
+          )}
           <Button
             className="home-menu-button"
             shape="circle"

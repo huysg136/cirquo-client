@@ -1,20 +1,23 @@
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Flex, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { getErrorMessage } from "../../../shared/config/errorMessages";
 import { useAuthStore } from "../store/auth.store";
 import type { LoginFormValues } from "../types/auth.types";
+import { ROUTES } from "../../../app/router/routePaths";
 
 export function LoginForm() {
   const login = useAuthStore((state) => state.login);
   const status = useAuthStore((state) => state.status);
+  const navigate = useNavigate();
 
   async function handleSubmit({ email, password, rememberMe }: LoginFormValues): Promise<void> {
     try {
       await login({ email, password }, rememberMe);
       toast.success("Đăng nhập thành công.");
+      navigate(ROUTES.PUBLIC.HOME);
     } catch (error) {
       toast.error(getErrorMessage(error));
     }
@@ -39,7 +42,7 @@ export function LoginForm() {
           prefix={<MailOutlined />}
           aria-label="Email"
           autoComplete="email"
-          placeholder="you@example.com"
+          placeholder="you@gmail.com"
         />
       </Form.Item>
 
