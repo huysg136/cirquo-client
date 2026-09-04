@@ -1,0 +1,13 @@
+.not-found-page {
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding: 24px;
+  background: var(--color-surface-muted);
+
+  .ant-result {
+    width: min(100%, 560px);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+}
