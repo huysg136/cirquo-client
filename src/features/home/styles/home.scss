@@ -46,7 +46,7 @@
 
 .home-navigation-link {
   color: var(--color-text-inverse) !important;
-  font-size: 13px;
+  font-size: 12px;
 
   &:hover {
     color: var(--color-border) !important;
@@ -57,6 +57,10 @@
   width: 184px;
   border: 0;
   border-radius: 10px;
+
+  .ant-input {
+    font-size: 12px !important;
+  }
 }
 
 .home-cart-badge .ant-badge-count {
