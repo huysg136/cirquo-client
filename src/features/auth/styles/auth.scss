@@ -16,6 +16,11 @@
   box-shadow: 0 24px 60px rgb(30 41 59 / 10%);
 }
 
+.auth-card--register {
+  height: auto;
+  min-height: calc(100dvh - 32px);
+}
+
 .auth-content {
   height: 100%;
   padding: 32px 44px;
@@ -24,6 +29,10 @@
 .auth-center-content {
   flex: 1;
   padding: 24px 0;
+}
+
+.auth-page--register .auth-center-content {
+  padding-block: 20px;
 }
 
 .auth-title {
@@ -114,6 +123,10 @@
   .auth-card {
     height: calc(100dvh - 16px);
     border-radius: 20px;
+  }
+
+  .auth-card--register {
+    min-height: calc(100dvh - 16px);
   }
 
   .auth-content {

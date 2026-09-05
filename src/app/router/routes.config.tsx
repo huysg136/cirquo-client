@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 
 import { LoginPage } from "../../features/auth/pages/LoginPage";
+import { RegisterPage } from "../../features/auth/pages/RegisterPage";
 import { CartPage } from "../../features/cart/pages/CartPage";
 import { HomePage } from "../../features/home/pages/HomePage";
 import { ROUTES } from "./routePaths";
@@ -18,6 +19,7 @@ export const appRoutes: AppRoute[] = [
   { path: ROUTES.PUBLIC.HOME, element: <HomePage /> },
   { path: ROUTES.PUBLIC.CART, element: <CartPage /> },
   { path: ROUTES.USER.LOGIN, element: <LoginPage /> },
+  { path: ROUTES.USER.REGISTER, element: <RegisterPage /> },
   {
     path: ROUTES.USER.PROFILE,
     element: (

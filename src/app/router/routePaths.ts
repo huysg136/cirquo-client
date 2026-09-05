@@ -4,6 +4,7 @@ export const ROUTES = Object.freeze({
   PUBLIC: { HOME: "/", MAINTENANCE: "/bao-tri", CART: "/gio-hang" },
   USER: {
     LOGIN: "/dang-nhap",
+    REGISTER: "/dang-ky",
     PROFILE: "/thong-tin-ca-nhan",
     ADDRESSES: "/dia-chi",
     ORDERS: "/don-hang-cua-toi",

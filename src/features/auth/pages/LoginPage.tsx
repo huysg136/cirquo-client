@@ -37,7 +37,7 @@ export function LoginPage() {
 
           <Text className="auth-footer">
             Bạn chưa có tài khoản?{" "}
-            <Link className="auth-link" to="/register">
+            <Link className="auth-link" to={ROUTES.USER.REGISTER}>
               Đăng ký ngay
             </Link>
           </Text>

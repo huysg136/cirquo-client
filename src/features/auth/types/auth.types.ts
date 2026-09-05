@@ -3,9 +3,18 @@ export interface LoginCredentials {
   password: string;
 }
 
+export interface RegisterCredentials {
+  email: string;
+  password: string;
+  fullName: string;
+  phone?: string;
+}
+
 export interface LoginFormValues extends LoginCredentials {
   rememberMe: boolean;
 }
+
+export type RegisterFormValues = RegisterCredentials;
 
 export interface AuthUser {
   id: string;
@@ -21,6 +30,12 @@ export interface AuthSession {
   refreshToken: string;
   tokenType?: string;
   user: AuthUser;
+}
+
+export interface RegisteredUser extends AuthUser {
+  status: "ACTIVE" | "INACTIVE" | "SUSPENDED";
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type AuthStatus = "idle" | "loading" | "authenticated";
