@@ -15,15 +15,16 @@ import {
   Form,
   Input,
   Radio,
-  Select,
   Typography,
 } from "antd";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { HomeHeader } from "../../home/components/HomeHeader";
 import { ROUTES } from "../../../app/router/routePaths";
 import "../styles/cart.scss";
+import { useAuthStore } from "../../auth/store/auth.store";
+import { getUserAddresses } from "../../address/services/address.service";
 
 const PRODUCT = {
   name: "iPhone 17",
@@ -42,8 +43,43 @@ export function CartPage() {
   const [hasItem, setHasItem] = useState(true);
   const { message: messageApi } = AntdApp.useApp();
   const total = PRODUCT.price * quantity;
+  const user = useAuthStore((state) => state.user);
+  const [checkoutForm] = Form.useForm();
+  const loadedAddressUserId = useRef<string | null>(null);
 
   const updateQuantity = (nextQuantity: number) => setQuantity(Math.max(1, nextQuantity));
+
+  useEffect(() => {
+    if (!user) return;
+
+    const userId = user.id;
+
+    if (loadedAddressUserId.current === userId) return;
+
+    loadedAddressUserId.current = userId;
+
+    async function fillDefaultAddress() {
+      try {
+        const addresses = await getUserAddresses(userId);
+
+        const defaultAddress = addresses.find(
+          (address) => address.defaultAddress,
+        );
+
+        checkoutForm.setFieldsValue({
+          recipientName: defaultAddress?.recipientName,
+          phone: defaultAddress?.phone,
+          province: defaultAddress?.province,
+          ward: defaultAddress?.ward,
+          addressLine: defaultAddress?.addressLine,
+        });
+      } catch {
+        // Vẫn cho người dùng tự nhập nếu chưa có/lỗi tải địa chỉ.
+      }
+    }
+
+    void fillDefaultAddress();
+  }, [checkoutForm, user]);
 
   if (!hasItem) {
     return (
@@ -117,6 +153,7 @@ export function CartPage() {
         </section>
 
         <Form
+          form={checkoutForm}
           layout="vertical"
           className="cart-form"
           onFinish={() =>
@@ -153,9 +190,8 @@ export function CartPage() {
                   name="province"
                   rules={[{ required: true, message: "Vui lòng chọn tỉnh/thành phố" }]}
                 >
-                  <Select
+                  <Input
                     placeholder="Chọn tỉnh / thành phố"
-                    options={[{ value: "Hồ Chí Minh" }, { value: "Hà Nội" }]}
                   />
                 </Form.Item>
                 <Form.Item
@@ -163,9 +199,8 @@ export function CartPage() {
                   name="ward"
                   rules={[{ required: true, message: "Vui lòng chọn phường/xã" }]}
                 >
-                  <Select
+                  <Input
                     placeholder="Chọn phường / xã"
-                    options={[{ value: "Phường Bến Nghé" }, { value: "Phường Sài Gòn" }]}
                   />
                 </Form.Item>
               </Flex>
