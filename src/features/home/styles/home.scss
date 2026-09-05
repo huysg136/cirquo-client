@@ -155,16 +155,20 @@
   overflow: hidden;
   background: var(--color-surface);
 
-  > .ant-image,
-  > .ant-image .ant-image-img {
+  > picture,
+  > picture .home-banner-image {
     display: block;
     width: 100%;
     height: 100%;
   }
 
-  > .ant-image .ant-image-img {
+  .home-banner-image {
     object-fit: cover;
   }
+}
+
+.home-banner-mobile-copy {
+  display: none;
 }
 
 .home-slider-button.ant-btn {
@@ -225,24 +229,25 @@
 }
 
 .home-categories {
-  padding: 62px max(42px, calc((100vw - 1500px) / 2 + 42px));
-  background: var(--color-section);
+  padding: 53px clamp(24px, 5vw, 96px);
+  background: #414141;
 }
 
 .home-category-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
 .home-category-card {
+  height: auto;
   border: 0;
   border-radius: 16px;
-  background: var(--color-card);
+  background: #323232;
   box-shadow: none;
 
   .ant-card-body {
-    padding: 38px 10px 22px;
+    padding: 0 0 28px 0;
   }
 
   .ant-typography {
@@ -251,15 +256,10 @@
   }
 }
 
-.home-category-icon {
-  display: grid;
-  width: 92px;
-  height: 92px;
-  place-items: center;
-  color: var(--color-surface-muted);
-  border-radius: 24px;
-  background: linear-gradient(145deg, #4b4b4b, #292929);
-  font-size: 42px;
+.home-category-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .home-account-button {
@@ -339,13 +339,55 @@
   .home-banner-carousel .slick-track,
   .home-banner-carousel .slick-slide > div,
   .home-banner-slide {
-    height: auto;
-    aspect-ratio: 18 / 5;
+    height: 400px;
+    aspect-ratio: auto;
   }
 
-  .home-banner-slide > .ant-image .ant-image-img {
+  .home-banner-slide > picture {
+    height: 300px;
+    background: var(--color-surface);
+  }
+
+  .home-banner-slide .home-banner-image {
     object-fit: contain;
     object-position: center;
+    transform: scale(0.75);
+  }
+
+  .home-banner-mobile-copy {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    height: 100px;
+    padding: 16px 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    color: var(--color-text);
+    background: var(--color-surface);
+
+    img {
+      position: absolute;
+      top: 22px;
+      right: 20px;
+      width: 64px;
+      margin: 0;
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    strong {
+      color: #e6007e;
+      font-size: 17px;
+      line-height: 1.12;
+    }
   }
 
   .home-slider-button.ant-btn {
@@ -357,7 +399,7 @@
   }
 
   .home-slider-dots {
-    bottom: 5px;
+    bottom: 110px;
     gap: 6px;
 
     button {
@@ -367,22 +409,30 @@
   }
 
   .home-categories {
-    padding: 36px 16px;
+    padding: 20px 12px 28px;
   }
 
   .home-category-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
+    margin: 0;
   }
 
-  .home-category-card .ant-card-body {
-    padding: 24px 8px 16px;
+  .home-category-card {
+    height: 174px;
+    border-radius: 14px;
+
+    .ant-card-body {
+      padding: 12px 8px 14px;
+    }
+
+    .ant-typography {
+      font-size: 13px;
+    }
   }
 
-  .home-category-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
-    font-size: 29px;
+  .home-category-image {
+    height: 108px;
+    transform: scale(1.18);
   }
 }

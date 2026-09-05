@@ -1,21 +1,41 @@
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Button, Carousel, Image } from "antd";
+import { Button, Carousel } from "antd";
 import type { CarouselRef } from "antd";
 import { useRef, useState } from "react";
 
 import iphone17Banner from "../assets/banners/iphone-17-cirquo.png";
+import iphone17MobileBanner from "../assets/banners/iphone-17-mobile.png";
 import iphone17ProMaxBanner from "../assets/banners/iphone-17-pro-max-cirquo.png";
+import iphone17ProMaxMobileBanner from "../assets/banners/iphone-17-pro-max-mobile.png";
 import { useNavigate } from "react-router-dom";
+import cirquoLogo from "../../../images/cirquo-logo.png";
 
 interface Banner {
   image: string;
+  mobileImage: string;
   alt: string;
   path: string;
+  productName: string;
+  description: string;
 }
 
 const banners: Banner[] = [
-  { image: iphone17ProMaxBanner, alt: "iPhone 17 Pro Max tại Cirquo", path: "/iphone/iphone-17" },
-  { image: iphone17Banner, alt: "iPhone 17 tại Cirquo", path: "/iphone/iphone-17" },
+  {
+    image: iphone17ProMaxBanner,
+    mobileImage: iphone17ProMaxMobileBanner,
+    alt: "iPhone 17 Pro Max tại Cirquo",
+    path: "/iphone/iphone-17",
+    productName: "iPhone 17 Pro Max",
+    description: "Công nghệ cho cuộc sống.",
+  },
+  {
+    image: iphone17Banner,
+    mobileImage: iphone17MobileBanner,
+    alt: "iPhone 17 tại Cirquo",
+    path: "/iphone/iphone-17",
+    productName: "iPhone 17",
+    description: "Công nghệ cho cuộc sống.",
+  },
 ];
 
 export function HomeHero() {
@@ -35,12 +55,20 @@ export function HomeHero() {
       >
         {banners.map((banner) => (
           <div key={banner.alt} className="home-banner-slide">
-            <Image
-              preview={false}
-              src={banner.image}
-              alt={banner.alt}
-              onClick={() => navigate(banner.path)}
-            />
+            <picture>
+              <source media="(max-width: 767px)" srcSet={banner.mobileImage} />
+              <img
+                className="home-banner-image"
+                src={banner.image}
+                alt={banner.alt}
+                onClick={() => navigate(banner.path)}
+              />
+            </picture>
+            <div className="home-banner-mobile-copy" aria-hidden="true">
+              <img src={cirquoLogo} alt="" />
+              <span>{banner.productName}</span>
+              <strong>{banner.description}</strong>
+            </div>
           </div>
         ))}
       </Carousel>
