@@ -1,13 +1,22 @@
 import { Card, Flex, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AuthBrand } from "../components/AuthBrand";
 import { LoginForm } from "../components/LoginForm";
 import "../styles/auth.scss";
+import { useAuthStore } from "../store/auth.store";
+import { ROUTES } from "../../../app/router/routePaths";
 
 const { Paragraph, Text, Title } = Typography;
 
 export function LoginPage() {
+  const navigate = useNavigate();
+  const user = useAuthStore((state) => state.user);
+
+  if (user) {
+    navigate(ROUTES.PUBLIC.HOME);
+  }
+
   return (
     <Flex align="center" justify="center" className="auth-page">
       <Card className="auth-card" styles={{ body: { height: "100%", padding: 0 } }}>
