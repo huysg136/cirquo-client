@@ -23,7 +23,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthStore } from "../../auth/store/auth.store";
 
-import cirquoLogo from "../../../images/cirquo-logo.png";
+import cirquoLogo from "../../../images/cirquo-logo.webp";
 import { ROUTES } from "../../../app/router/routePaths";
 
 const navigationItems = [

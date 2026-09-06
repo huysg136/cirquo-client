@@ -8,7 +8,7 @@ import { Layout } from "antd";
 import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../../app/router/routePaths";
-import cirquoLogo from "../../../images/cirquo-logo.png";
+import cirquoLogo from "../../../images/cirquo-logo.webp";
 
 const productLinks = [
   { label: "iPhone", path: ROUTES.CATEGORY.IPHONE },

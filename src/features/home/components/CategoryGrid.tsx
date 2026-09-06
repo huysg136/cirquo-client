@@ -1,11 +1,11 @@
 import { Card, Flex, Typography } from "antd";
 
-import accessoriesImage from "../../../images/categories/accessories.png";
-import audioImage from "../../../images/categories/audio.png";
-import ipadImage from "../../../images/categories/ipad.png";
-import iphoneImage from "../../../images/categories/iphone.png";
-import macImage from "../../../images/categories/mac.png";
-import watchImage from "../../../images/categories/watch.png";
+import accessoriesImage from "../../../images/categories/accessories.webp";
+import audioImage from "../../../images/categories/audio.webp";
+import ipadImage from "../../../images/categories/ipad.webp";
+import iphoneImage from "../../../images/categories/iphone.webp";
+import macImage from "../../../images/categories/mac.webp";
+import watchImage from "../../../images/categories/watch.webp";
 import { ROUTES } from "../../../app/router/routePaths";
 import { useNavigate } from "react-router-dom";
 

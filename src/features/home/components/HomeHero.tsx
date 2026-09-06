@@ -3,12 +3,12 @@ import { Button, Carousel } from "antd";
 import type { CarouselRef } from "antd";
 import { useRef, useState } from "react";
 
-import iphone17Banner from "../assets/banners/iphone-17-cirquo.png";
-import iphone17MobileBanner from "../assets/banners/iphone-17-mobile.png";
-import iphone17ProMaxBanner from "../assets/banners/iphone-17-pro-max-cirquo.png";
-import iphone17ProMaxMobileBanner from "../assets/banners/iphone-17-pro-max-mobile.png";
+import iphone17Banner from "../assets/banners/iphone-17-cirquo.webp";
+import iphone17MobileBanner from "../assets/banners/iphone-17-mobile.webp";
+import iphone17ProMaxBanner from "../assets/banners/iphone-17-pro-max-cirquo.webp";
+import iphone17ProMaxMobileBanner from "../assets/banners/iphone-17-pro-max-mobile.webp";
 import { useNavigate } from "react-router-dom";
-import cirquoLogo from "../../../images/cirquo-logo.png";
+import cirquoLogo from "../../../images/cirquo-logo.webp";
 
 interface Banner {
   image: string;
