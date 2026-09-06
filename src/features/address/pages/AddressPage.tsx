@@ -22,7 +22,6 @@ import {
 import { useEffect, useRef, useState } from "react";
 
 import { getErrorMessage } from "../../../shared/config/errorMessages";
-import { HomeHeader } from "../../home/components/HomeHeader";
 import { useAuthStore } from "../../auth/store/auth.store";
 import {
   createUserAddress,
@@ -181,7 +180,6 @@ export function AddressPage() {
   return (
     <div className="address-page">
       {modalContextHolder}
-      <HomeHeader />
       <main className="address-container">
         <Flex justify="space-between" align="flex-start" gap={16} className="address-heading">
           <Flex vertical gap={6}>

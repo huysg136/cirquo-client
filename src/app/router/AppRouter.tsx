@@ -1,12 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { appRoutes } from "./routes.config";
+import { StoreLayout } from "../layouts/StoreLayout";
+import { standaloneRoutes, storeRoutes } from "./routes.config";
 
 export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        {appRoutes.map(({ path, element }) => (
+        <Route element={<StoreLayout />}>
+          {storeRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+        </Route>
+
+        {standaloneRoutes.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
         ))}
       </Routes>

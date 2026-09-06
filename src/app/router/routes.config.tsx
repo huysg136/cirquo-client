@@ -15,11 +15,9 @@ interface AppRoute {
   element: ReactElement;
 }
 
-export const appRoutes: AppRoute[] = [
+export const storeRoutes: AppRoute[] = [
   { path: ROUTES.PUBLIC.HOME, element: <HomePage /> },
   { path: ROUTES.PUBLIC.CART, element: <CartPage /> },
-  { path: ROUTES.USER.LOGIN, element: <LoginPage /> },
-  { path: ROUTES.USER.REGISTER, element: <RegisterPage /> },
   {
     path: ROUTES.USER.PROFILE,
     element: (
@@ -36,5 +34,10 @@ export const appRoutes: AppRoute[] = [
       </PrivateRoute>
     ),
   },
+];
+
+export const standaloneRoutes: AppRoute[] = [
+  { path: ROUTES.USER.LOGIN, element: <LoginPage /> },
+  { path: ROUTES.USER.REGISTER, element: <RegisterPage /> },
   { path: "*", element: <NotFoundPage /> },
 ];

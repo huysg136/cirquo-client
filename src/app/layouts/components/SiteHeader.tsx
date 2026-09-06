@@ -19,12 +19,12 @@ import {
   Layout,
   Typography,
 } from "antd";
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuthStore } from "../../auth/store/auth.store";
+import { Link, useNavigate } from "react-router-dom";
 
+import { useAuthStore } from "../../../features/auth/store/auth.store";
 import cirquoLogo from "../../../images/cirquo-logo.webp";
-import { ROUTES } from "../../../app/router/routePaths";
+import { ROUTES } from "../../router/routePaths";
 
 const navigationItems = [
   { label: "iPhone", path: ROUTES.CATEGORY.IPHONE },
@@ -35,9 +35,14 @@ const navigationItems = [
   { label: "Phụ kiện", path: ROUTES.CATEGORY.ACCESSORIES },
 ];
 
-export function HomeHeader() {
+export function SiteHeader() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
+
+  const displayName =
+    user?.fullName?.trim().split(/\s+/).at(-1) ?? user?.email.split("@")[0] ?? "Đăng nhập";
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const navigateFromMobileMenu = (path: string) => {
@@ -45,15 +50,11 @@ export function HomeHeader() {
     navigate(path);
   };
 
-  const user = useAuthStore((state) => state.user);
-  const displayName =
-    user?.fullName?.trim().split(/\s+/).at(-1) ?? user?.email.split("@")[0] ?? "Đăng nhập";
-
   const accountMenuItems = [
     {
       key: "profile",
       label: (
-        <span className="home-account-menu-label">
+        <span className="site-account-menu-label">
           <UserOutlined />
           Thông tin cá nhân
         </span>
@@ -63,7 +64,7 @@ export function HomeHeader() {
     {
       key: "addresses",
       label: (
-        <span className="home-account-menu-label">
+        <span className="site-account-menu-label">
           <EnvironmentOutlined />
           Địa chỉ giao hàng
         </span>
@@ -73,21 +74,19 @@ export function HomeHeader() {
     {
       key: "orders",
       label: (
-        <span className="home-account-menu-label">
+        <span className="site-account-menu-label">
           <FileTextOutlined />
           Đơn hàng của tôi
         </span>
       ),
       onClick: () => navigate(ROUTES.USER.ORDERS),
     },
-    {
-      type: "divider" as const,
-    },
+    { type: "divider" as const },
     {
       key: "logout",
       danger: true,
       label: (
-        <span className="home-account-menu-label">
+        <span className="site-account-menu-label">
           <LogoutOutlined />
           Đăng xuất
         </span>
@@ -99,31 +98,29 @@ export function HomeHeader() {
     },
   ];
 
-  const logout = useAuthStore((state) => state.logout);
-
   return (
-    <Layout.Header className="home-header">
-      <Flex align="center" justify="space-between" className="home-header-content">
-        <Link className="home-brand" to="/" aria-label="Trang chủ Cirquo">
+    <Layout.Header className="site-header">
+      <Flex align="center" justify="space-between" className="site-header-content">
+        <Link className="site-brand" to={ROUTES.PUBLIC.HOME} aria-label="Trang chủ Cirquo">
           <Image preview={false} src={cirquoLogo} alt="Cirquo" />
         </Link>
 
-        <Flex align="center" gap={40} className="home-navigation">
+        <Flex align="center" gap={40} className="site-navigation">
           {navigationItems.map((item) => (
-            <Link key={item.path} className="home-navigation-link" to={item.path}>
+            <Link key={item.path} className="site-navigation-link" to={item.path}>
               {item.label}
             </Link>
           ))}
         </Flex>
 
-        <Flex align="center" gap={10} className="home-header-actions">
+        <Flex align="center" gap={10} className="site-header-actions">
           <Input
-            className="home-search"
+            className="site-search"
             prefix={<SearchOutlined />}
             placeholder="Tìm sản phẩm"
             aria-label="Tìm sản phẩm"
           />
-          <Badge className="home-cart-badge" count={1} showZero={false}>
+          <Badge className="site-cart-badge" count={1} showZero={false}>
             <Button
               shape="circle"
               type="text"
@@ -137,24 +134,24 @@ export function HomeHeader() {
               menu={{ items: accountMenuItems }}
               trigger={["hover"]}
               placement="bottomRight"
-              overlayClassName="home-account-button-dropdown"
+              overlayClassName="site-account-button-dropdown"
             >
-              <Button className="home-account-button" type="text" icon={<UserOutlined />}>
-                <span className="home-account-button-name">{displayName}</span>
+              <Button className="site-account-button" type="text" icon={<UserOutlined />}>
+                <span className="site-account-button-name">{displayName}</span>
               </Button>
             </Dropdown>
           ) : (
             <Button
-              className="home-account-button"
+              className="site-account-button"
               type="text"
               icon={<UserOutlined />}
               onClick={() => navigate(ROUTES.USER.LOGIN)}
             >
-              <span className="home-account-button-name">Đăng nhập</span>
+              <span className="site-account-button-name">Đăng nhập</span>
             </Button>
           )}
           <Button
-            className="home-menu-button"
+            className="site-menu-button"
             shape="circle"
             type="text"
             icon={<MenuOutlined />}
@@ -165,13 +162,13 @@ export function HomeHeader() {
       </Flex>
 
       <Drawer
-        className="home-mobile-drawer"
+        className="site-mobile-drawer"
         title="Danh mục"
         placement="right"
         open={isMobileMenuOpen}
         onClose={closeMobileMenu}
       >
-        <Flex vertical className="home-mobile-navigation">
+        <Flex vertical className="site-mobile-navigation">
           {navigationItems.map((item) => (
             <Link key={item.path} to={item.path} onClick={closeMobileMenu}>
               {item.label}
@@ -179,16 +176,16 @@ export function HomeHeader() {
           ))}
         </Flex>
         {user ? (
-          <Flex vertical gap={16} className="home-mobile-account">
-            <Flex align="center" gap={12} className="home-mobile-account-summary">
+          <Flex vertical gap={16} className="site-mobile-account">
+            <Flex align="center" gap={12} className="site-mobile-account-summary">
               <Avatar size={40} icon={<UserOutlined />} />
               <Flex vertical gap={0}>
-                <Typography.Text className="home-mobile-account-label">Tài khoản</Typography.Text>
+                <Typography.Text className="site-mobile-account-label">Tài khoản</Typography.Text>
                 <Typography.Text strong>{displayName}</Typography.Text>
               </Flex>
             </Flex>
 
-            <Flex vertical gap={4} className="home-mobile-account-actions">
+            <Flex vertical gap={4} className="site-mobile-account-actions">
               <Button
                 block
                 type="text"
@@ -230,7 +227,7 @@ export function HomeHeader() {
         ) : (
           <Button
             block
-            className="home-mobile-login"
+            className="site-mobile-login"
             icon={<UserOutlined />}
             onClick={() => navigateFromMobileMenu(ROUTES.USER.LOGIN)}
           >

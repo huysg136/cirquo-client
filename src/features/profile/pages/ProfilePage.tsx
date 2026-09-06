@@ -2,7 +2,6 @@ import { KeyOutlined, SaveOutlined, UserOutlined } from "@ant-design/icons";
 import { App as AntdApp, Button, Card, Flex, Form, Input, Skeleton, Typography } from "antd";
 import { useEffect, useState } from "react";
 
-import { HomeHeader } from "../../home/components/HomeHeader";
 import { getErrorMessage } from "../../../shared/config/errorMessages";
 import { useAuthStore } from "../../auth/store/auth.store";
 import { changeUserPassword, getUserProfile, updateUserProfile } from "../services/profile.service";
@@ -80,7 +79,6 @@ export function ProfilePage() {
 
   return (
     <div className="profile-page">
-      <HomeHeader />
       <main className="profile-container">
         <Flex vertical gap={6} className="profile-heading">
           <Typography.Title level={2}>Thông tin cá nhân</Typography.Title>

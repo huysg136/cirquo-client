@@ -7,8 +7,8 @@ import {
 import { Layout } from "antd";
 import { Link } from "react-router-dom";
 
-import { ROUTES } from "../../../app/router/routePaths";
 import cirquoLogo from "../../../images/cirquo-logo.webp";
+import { ROUTES } from "../../router/routePaths";
 
 const productLinks = [
   { label: "iPhone", path: ROUTES.CATEGORY.IPHONE },
@@ -26,26 +26,26 @@ const accountLinks = [
   { label: "Giỏ hàng", path: ROUTES.PUBLIC.CART },
 ];
 
-export function HomeFooter() {
+export function SiteFooter() {
   return (
-    <Layout.Footer className="home-footer">
-      <div className="home-footer-content">
-        <div className="home-footer-brand">
-          <Link className="home-footer-logo" to={ROUTES.PUBLIC.HOME} aria-label="Trang chủ Cirquo">
+    <Layout.Footer className="site-footer">
+      <div className="site-footer-content">
+        <div className="site-footer-brand">
+          <Link className="site-footer-logo" to={ROUTES.PUBLIC.HOME} aria-label="Trang chủ Cirquo">
             <img src={cirquoLogo} alt="Cirquo" />
           </Link>
           <p>Chuyên cung cấp sản phẩm Apple chính hãng cùng trải nghiệm mua sắm tin cậy.</p>
-          <a className="home-footer-contact" href="tel:19001009">
+          <a className="site-footer-contact" href="tel:0906026912">
             <PhoneOutlined />
             <span>0906 026 912</span>
           </a>
-          <a className="home-footer-contact" href="mailto:thaigiahuy6912@gmail.com">
+          <a className="site-footer-contact" href="mailto:thaigiahuy6912@gmail.com">
             <MailOutlined />
             <span>thaigiahuy6912@gmail.com</span>
           </a>
         </div>
 
-        <div className="home-footer-column">
+        <div className="site-footer-column">
           <h3>Sản phẩm</h3>
           <nav aria-label="Danh mục sản phẩm">
             {productLinks.map((item) => (
@@ -56,7 +56,7 @@ export function HomeFooter() {
           </nav>
         </div>
 
-        <div className="home-footer-column">
+        <div className="site-footer-column">
           <h3>Tài khoản</h3>
           <nav aria-label="Tài khoản">
             {accountLinks.map((item) => (
@@ -67,7 +67,7 @@ export function HomeFooter() {
           </nav>
         </div>
 
-        <div className="home-footer-column home-footer-support">
+        <div className="site-footer-column site-footer-support">
           <h3>Hỗ trợ khách hàng</h3>
           <p>
             <EnvironmentOutlined />
@@ -75,7 +75,7 @@ export function HomeFooter() {
           </p>
           <p>Thứ Hai – Chủ Nhật: 08:00 – 21:00</p>
           <a
-            className="home-footer-support-link"
+            className="site-footer-support-link"
             href="https://zalo.me/0906026912"
             target="_blank"
             rel="noreferrer"
@@ -86,7 +86,7 @@ export function HomeFooter() {
         </div>
       </div>
 
-      <div className="home-footer-bottom">
+      <div className="site-footer-bottom">
         <span>© {new Date().getFullYear()} Cirquo. All rights reserved.</span>
         <span>Sản phẩm Apple chính hãng</span>
       </div>

@@ -20,7 +20,6 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { HomeHeader } from "../../home/components/HomeHeader";
 import { ROUTES } from "../../../app/router/routePaths";
 import "../styles/cart.scss";
 import { useAuthStore } from "../../auth/store/auth.store";
@@ -84,7 +83,6 @@ export function CartPage() {
   if (!hasItem) {
     return (
       <div className="cart-page">
-        <HomeHeader />
         <main className="cart-empty">
           <ShoppingCartOutlined />
           <Typography.Title level={3}>Giỏ hàng đang trống</Typography.Title>
@@ -99,7 +97,6 @@ export function CartPage() {
 
   return (
     <div className="cart-page">
-      <HomeHeader />
       <main className="cart-container">
         <Flex justify="space-between" align="center" className="cart-heading">
           <Link to={ROUTES.PUBLIC.HOME} className="cart-back-link">
