@@ -1,6 +1,7 @@
 import { Layout } from "antd";
 
 import { CategoryGrid } from "../components/CategoryGrid";
+import { HomeFooter } from "../components/HomeFooter";
 import { HomeHeader } from "../components/HomeHeader";
 import { HomeHero } from "../components/HomeHero";
 import "../styles/home.scss";
@@ -13,6 +14,7 @@ export function HomePage() {
         <HomeHero />
         <CategoryGrid />
       </Layout.Content>
+      <HomeFooter />
     </Layout>
   );
 }
