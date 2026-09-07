@@ -1,0 +1,82 @@
+.admin-layout {
+  min-height: 100dvh;
+  background: #f6f7fb;
+}
+
+.admin-sidebar {
+  background: #111827 !important;
+
+  .ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ant-menu {
+    background: transparent;
+  }
+}
+
+.admin-brand {
+  width: 100%;
+  padding: 28px 24px;
+  color: #fff;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 23px;
+  font-weight: 700;
+  text-align: left;
+
+  span {
+    color: #a5b4fc;
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+.admin-sidebar-bottom {
+  display: flex;
+  margin-top: auto;
+  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+  color: rgb(255 255 255 / 70%);
+
+  .ant-typography {
+    overflow: hidden;
+    color: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ant-btn {
+    width: fit-content;
+    padding-inline: 0;
+    color: #fff;
+  }
+}
+
+.admin-header {
+  display: flex;
+  height: 64px;
+  padding: 0 32px;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 0 1px 0 rgb(15 23 42 / 8%);
+}
+
+.admin-content {
+  padding: 32px;
+}
+
+@media (max-width: 575px) {
+  .admin-header,
+  .admin-content {
+    padding-inline: 16px;
+  }
+
+  .admin-content {
+    padding-block: 20px;
+  }
+}

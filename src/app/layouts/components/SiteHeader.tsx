@@ -1,4 +1,5 @@
 import {
+  AppstoreOutlined,
   EnvironmentOutlined,
   FileTextOutlined,
   LogoutOutlined,
@@ -40,6 +41,7 @@ export function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
+  const canAccessAdmin = user?.roleName === "ADMIN" || user?.roleName === "STAFF";
 
   const displayName =
     user?.fullName?.trim().split(/\s+/).at(-1) ?? user?.email.split("@")[0] ?? "Đăng nhập";
@@ -81,6 +83,20 @@ export function SiteHeader() {
       ),
       onClick: () => navigate(ROUTES.USER.ORDERS),
     },
+    ...(canAccessAdmin
+      ? [
+          {
+            key: "admin",
+            label: (
+              <span className="site-account-menu-label">
+                <AppstoreOutlined />
+                Trang quản trị
+              </span>
+            ),
+            onClick: () => navigate(ROUTES.ADMIN.DASHBOARD),
+          },
+        ]
+      : []),
     { type: "divider" as const },
     {
       key: "logout",
@@ -210,6 +226,16 @@ export function SiteHeader() {
               >
                 Đơn hàng của tôi
               </Button>
+              {canAccessAdmin ? (
+                <Button
+                  block
+                  type="text"
+                  icon={<AppstoreOutlined />}
+                  onClick={() => navigateFromMobileMenu(ROUTES.ADMIN.DASHBOARD)}
+                >
+                  Trang quản trị
+                </Button>
+              ) : null}
               <Button
                 block
                 danger

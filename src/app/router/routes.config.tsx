@@ -9,6 +9,10 @@ import { NotFoundPage } from "../../features/not-found/pages/NotFoundPage";
 import { ProfilePage } from "../../features/profile/pages/ProfilePage";
 import { AddressPage } from "../../features/address/pages/AddressPage";
 import { PrivateRoute } from "./PrivateRoute";
+import { AdminDashboardPage } from "../../features/admin/pages/AdminDashboardPage";
+import { AdminUsersPage } from "../../features/admin/pages/AdminUsersPage";
+import { AdminCategoriesPage } from "../../features/admin/pages/AdminCategoriesPage";
+import { AdminProductsPage } from "../../features/admin/pages/AdminProductsPage";
 
 interface AppRoute {
   path: string;
@@ -40,4 +44,11 @@ export const standaloneRoutes: AppRoute[] = [
   { path: ROUTES.USER.LOGIN, element: <LoginPage /> },
   { path: ROUTES.USER.REGISTER, element: <RegisterPage /> },
   { path: "*", element: <NotFoundPage /> },
+];
+
+export const adminRoutes: AppRoute[] = [
+  { path: ROUTES.ADMIN.DASHBOARD, element: <AdminDashboardPage /> },
+  { path: ROUTES.ADMIN.USERS, element: <AdminUsersPage /> },
+  { path: ROUTES.ADMIN.CATEGORIES, element: <AdminCategoriesPage /> },
+  { path: ROUTES.ADMIN.PRODUCTS, element: <AdminProductsPage /> },
 ];

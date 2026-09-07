@@ -12,6 +12,7 @@ export const ROUTES = Object.freeze({
   ADMIN: {
     DASHBOARD: ADMIN_BASE_PATH,
     USERS: `${ADMIN_BASE_PATH}/users`,
+    CATEGORIES: `${ADMIN_BASE_PATH}/categories`,
     PRODUCTS: `${ADMIN_BASE_PATH}/products`,
     ORDERS: `${ADMIN_BASE_PATH}/orders`,
   },
@@ -20,7 +21,7 @@ export const ROUTES = Object.freeze({
     MAC: `/mac`,
     IPAD: `/ipad`,
     WATCH: `/watch`,
-    HEADPHONES: `/tai-nghe-loa`,
+    HEADPHONES: `/am-thanh`,
     ACCESSORIES: `/phu-kien`,
   },
 });
