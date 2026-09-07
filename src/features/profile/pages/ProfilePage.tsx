@@ -38,7 +38,7 @@ export function ProfilePage() {
       phone: user.phone ?? null,
     };
 
-    getUserProfile(user.id)
+    getUserProfile()
       .then((profile) => profileForm.setFieldsValue(toProfileFormValues(profile)))
       .catch((error) => {
         profileForm.setFieldsValue(toProfileFormValues(fallbackProfile));
@@ -52,7 +52,7 @@ export function ProfilePage() {
 
     setIsSavingProfile(true);
     try {
-      const profile = await updateUserProfile(user.id, values);
+      const profile = await updateUserProfile(values);
       updateUser({ ...user, ...profile });
       messageApi.success("Đã cập nhật thông tin cá nhân.");
     } catch (error) {
@@ -67,7 +67,7 @@ export function ProfilePage() {
 
     setIsSavingPassword(true);
     try {
-      await changeUserPassword(user.id, values);
+      await changeUserPassword(values);
       passwordForm.resetFields();
       messageApi.success("Đã cập nhật mật khẩu.");
     } catch (error) {

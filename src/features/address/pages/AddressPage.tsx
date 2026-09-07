@@ -69,7 +69,7 @@ export function AddressPage() {
     if (!user || requestedUserId.current === user.id) return;
 
     requestedUserId.current = user.id;
-    getUserAddresses(user.id)
+    getUserAddresses()
       .then((result) => setAddresses(sortAddresses(result)))
       .catch((error) => {
         requestedUserId.current = null;
@@ -101,8 +101,8 @@ export function AddressPage() {
     setIsSaving(true);
     try {
       const savedAddress = editingAddress
-        ? await updateUserAddress(user.id, editingAddress.id, values)
-        : await createUserAddress(user.id, values);
+        ? await updateUserAddress(editingAddress.id, values)
+        : await createUserAddress(values);
 
       setAddresses((currentAddresses) => {
         const remainingAddresses = currentAddresses
@@ -127,7 +127,7 @@ export function AddressPage() {
 
     setChangingDefaultId(address.id);
     try {
-      const updatedAddress = await updateUserAddress(user.id, address.id, {
+      const updatedAddress = await updateUserAddress(address.id, {
         ...toFormValues(address),
         defaultAddress: true,
       });
@@ -154,7 +154,7 @@ export function AddressPage() {
 
     setDeletingAddressId(addressId);
     try {
-      await deleteUserAddress(user.id, addressId);
+      await deleteUserAddress(addressId);
       setAddresses((currentAddresses) =>
         currentAddresses.filter((address) => address.id !== addressId),
       );

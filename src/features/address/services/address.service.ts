@@ -1,32 +1,29 @@
 import { request } from "../../../shared/api/httpClient";
 import type { AddressFormValues, UserAddress } from "../types/address.types";
 
-function addressPath(userId: string): string {
-  return `/users/${userId}/addresses`;
+const ADDRESS_PATH = "/addresses";
+
+export function getUserAddresses(): Promise<UserAddress[]> {
+  return request<UserAddress[]>(ADDRESS_PATH);
 }
 
-export function getUserAddresses(userId: string): Promise<UserAddress[]> {
-  return request<UserAddress[]>(addressPath(userId));
-}
-
-export function createUserAddress(userId: string, values: AddressFormValues): Promise<UserAddress> {
-  return request<UserAddress>(addressPath(userId), {
+export function createUserAddress(values: AddressFormValues): Promise<UserAddress> {
+  return request<UserAddress>(ADDRESS_PATH, {
     method: "POST",
     body: values,
   });
 }
 
 export function updateUserAddress(
-  userId: string,
   addressId: string,
   values: AddressFormValues,
 ): Promise<UserAddress> {
-  return request<UserAddress>(`${addressPath(userId)}/${addressId}`, {
+  return request<UserAddress>(`${ADDRESS_PATH}/${addressId}`, {
     method: "PUT",
     body: values,
   });
 }
 
-export function deleteUserAddress(userId: string, addressId: string): Promise<void> {
-  return request<void>(`${addressPath(userId)}/${addressId}`, { method: "DELETE" });
+export function deleteUserAddress(addressId: string): Promise<void> {
+  return request<void>(`${ADDRESS_PATH}/${addressId}`, { method: "DELETE" });
 }

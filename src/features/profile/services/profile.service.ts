@@ -5,22 +5,21 @@ import type {
   UserProfile,
 } from "../types/profile.types";
 
-export function getUserProfile(userId: string): Promise<UserProfile> {
-  return request<UserProfile>(`/users/${userId}`);
+export function getUserProfile(): Promise<UserProfile> {
+  return request<UserProfile>("/profile");
 }
 
 export function updateUserProfile(
-  userId: string,
   values: UpdateProfileValues,
 ): Promise<UserProfile> {
-  return request<UserProfile>(`/users/${userId}`, {
+  return request<UserProfile>("/profile", {
     method: "PUT",
     body: values,
   });
 }
 
-export function changeUserPassword(userId: string, values: ChangePasswordValues): Promise<void> {
-  return request<void>(`/auth/users/${userId}/password`, {
+export function changeUserPassword(values: ChangePasswordValues): Promise<void> {
+  return request<void>("/auth/password", {
     method: "PATCH",
     body: values,
   });

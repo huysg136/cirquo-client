@@ -59,7 +59,7 @@ export function CartPage() {
 
     async function fillDefaultAddress() {
       try {
-        const addresses = await getUserAddresses(userId);
+        const addresses = await getUserAddresses();
 
         const defaultAddress = addresses.find(
           (address) => address.defaultAddress,
